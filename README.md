@@ -1,6 +1,6 @@
 # Book Series Tracker
 
-As an avid reader, I have trouble keeping track of books that I read, especially if they are part of an ongoing series. This app helps me track my favorite authors so that I know when a new release is available.
+Organize your digital library and be alerted of new releases by your favorite authors.
 
 ## Screenshots
 Desktop:
@@ -26,17 +26,25 @@ This app helps readers track books they have read and learn about new book relea
 
 ## User stories
 1.1 As a visitor, I want to land on website and learn what it is about.
-![Wireframe](https://raw.githubusercontent.com/Marjona6/job-get-node-capstone/master/public/img/wireframe-01.jpg)
+![Wireframe](https://https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-1.JPG)
 
 1.2 As a visitor, I can sign up for an account in order to create a profile.
 1.3 As a user, I can log into my account in order to save my progress.
 2.2 As a user, I can update my password in case I forget it and need to log in.
+![Wireframe](https://https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-2.JPG)
+
+1.5 As a user, I can view my dashboard when I log in in order to see integrated data about my account.
+![Wireframe](https://https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-3.JPG)
+
 1.4 As a user, I can search for books or authors I have read so that I can add them to my profile.
 1.6 As a user, I can add books to my profile so that I can keep track of what I have read.
-1.5 As a user, I can view my dashboard when I log in in order to see integrated data about my account.
+![Wireframe](https://https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-4.JPG)
+
 1.7 As a user, I can view a list of new releases by authors I follow so that I can find new books in a series.
 2.3 As a user, I can remove new releases from the list if I am uninterested in order to clean up the results.
 1.8 As a user, I can add new releases to my profile in order to follows those authors or indicated I have read the book.
+![Wireframe](https://https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-5.JPG)
+
 2.1 As a user, I can click on a book in the list for a plot summary so that I can refresh my memory on the book.
 3.3 As a user, I can group books by genre.
 3.4 As a user, I can group books by series in order to better organize my profile.
@@ -49,7 +57,7 @@ This app helps readers track books they have read and learn about new book relea
 ![Wireframe](https://raw.githubusercontent.com/Marjona6/job-get-node-capstone/master/public/img/wireframe-01.jpg)
 
 ## Working Prototype
-You can access a working prototype of the app at [https://job-get.herokuapp.com](https://job-get.herokuapp.com).
+You can access a working prototype of the app at [https://book-tracker-node-capstone.herokuapp.com](https://book-tracker-node-capstone.herokuapp.com).
 
 ## Functionality
 This app is based on the concept of a [funnel system](https://timsstrategy.com/how-to-create-a-job-search-funnel/) as a strategy for organizing a job search. With this app, users can keep their job searches organized from the initial stage of identifying a new lead through six funnel stages:
