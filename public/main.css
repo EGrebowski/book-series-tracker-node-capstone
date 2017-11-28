@@ -28,10 +28,20 @@ html {
 body {
     font-size: 16px;
     height: 100%;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 button {
     cursor: pointer;
+}
+
+.search,
+.my-books,
+.new-releases {
+    background-color: rgba(139, 132, 103, 0.6);
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid black;
 }
 
 nav {
@@ -64,17 +74,18 @@ nav button {
 }
 
 header {
-    font-family: 'Noto Sans', sans-serif;
     width: 80%;
     margin: 0 auto;
-    transform: translateY(-50%);
-    padding-top: 50%;
+    padding-top: 20%;
+    padding-bottom: 20%;
+    color: white;
 }
 
 h1 {
     font-family: 'Cinzel Decorative', cursive;
     font-size: 3.5rem;
     font-weight: normal;
+    color: black;
 }
 
 h2 {
@@ -82,7 +93,56 @@ h2 {
     font-weight: normal;
 }
 
+header p {
+    margin-top: 10px;
+}
+
 main {
     max-width: 1000px;
     margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+form {
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+    /*    padding-left: 40%;*/
+}
+
+input {
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 5px;
+    margin-right: 3px;
+    width: 40%;
+}
+
+.search button {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+h4 {
+    font-size: 1.25rem;
+    padding-bottom: 10px;
+    font-weight: normal;
+}
+
+.new-releases {
+    float: right;
+}
+
+.book-entry {
+    padding-left: 5px;
+    padding-right: 10px;
+    margin-bottom: 25px
+}
+
+.author {
+    font-weight: bold;
 }

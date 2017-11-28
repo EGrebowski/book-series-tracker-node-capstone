@@ -26,29 +26,47 @@
 
     <main role="main">
         <section class="dashboard">
-            <section class="search">
+            <section class="search col-12">
                 <form action="#" name="author-search">
-                    <label for="search-input">Search for an author to find books</label><br>
-                    <input type="text" name="search-input" id="search-input">
+                    <label for="search-input">Find Books</label><br>
+                    <input type="text" name="search-input" id="search-input" placeholder="author search">
                     <button type="submit">Search</button>
                 </form>
             </section>
 
-            <section class="my-books">
+            <section class="my-books col-7">
                 <h4>My Books</h4>
+                <div class="book-entry col-6">
+                    <img src="images/book-thumbnail-placeholder.jpg" />
+                    <p class="book-title">Harry Potter and the Cursed Child</p>
+                    <p class="author">J.K. Rowling</p>
+
+                </div>
+                <div class="book-entry col-6">
+                    <img src="images/book-thumbnail-placeholder.jpg" />
+                    <p class="book-title">Harry Potter and the Cursed Child</p>
+                    <p class="author">J.K. Rowling</p>
+                </div>
                 <div class="book-entry">
                     <img src="images/book-thumbnail-placeholder.jpg" />
                     <p class="book-title">Harry Potter and the Cursed Child</p>
                     <p class="author">J.K. Rowling</p>
-                    <a class="see-more" href="#">See More</a>
                 </div>
+                <a class="see-more" href="#">See More</a>
             </section>
 
-            <section class="new-releases">
+            <section class="new-releases col-4">
                 <h4>New Releases by My Authors</h4>
-                <img src="images/book-thumbnail-placeholder.jpg" />
-                <p class="book-title">Harry Potter and the Cursed Child</p>
-                <p class="author">J.K. Rowling</p>
+                <div class="book-entry">
+                    <img src="images/book-thumbnail-placeholder.jpg" />
+                    <p class="book-title">Harry Potter and the Cursed Child</p>
+                    <p class="author">J.K. Rowling</p>
+                </div>
+                <div class="book-entry">
+                    <img src="images/book-thumbnail-placeholder.jpg" />
+                    <p class="book-title">Harry Potter and the Cursed Child</p>
+                    <p class="author">J.K. Rowling</p>
+                </div>
                 <a class="see-more" href="#">See More</a>
             </section>
         </section>
