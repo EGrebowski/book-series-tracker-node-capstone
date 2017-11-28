@@ -4,7 +4,7 @@
 <head>
     <title>Next Book: Find New Releases from Your Favorite Authors</title>
     <meta name="description" content="Organize your digital library and be alerted of new releases by your favorite authors">
-    <link href="https://fonts.googleapis.com/css?family=Amiri|Merriweather+Sans|Roboto+Condensed|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Noto+Sans" rel="stylesheet">
     <link rel="stylesheet" href="float-grid.css" type="text/css">
     <link rel="stylesheet" href="main.css" type="text/css">
 </head>
@@ -12,8 +12,10 @@
 <body>
     <nav role="navigation">
         <h3>Next Book</h3>
-        <button type="submit">Sign Up</button>
-        <button type="submit">Log In</button>
+        <div class="nav-buttons">
+            <button type="submit">Sign Up</button>
+            <button type="submit">Log In</button>
+        </div>
     </nav>
 
     <header role="banner">
@@ -42,7 +44,13 @@
                 </div>
             </section>
 
-            <section class="new-releases"></section>
+            <section class="new-releases">
+                <h4>New Releases by My Authors</h4>
+                <img src="images/book-thumbnail-placeholder.jpg" />
+                <p class="book-title">Harry Potter and the Cursed Child</p>
+                <p class="author">J.K. Rowling</p>
+                <a class="see-more" href="#">See More</a>
+            </section>
         </section>
     </main>
 
