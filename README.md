@@ -28,15 +28,19 @@ This app helps readers track books they have read and learn about new book relea
 ![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-3.JPG)
 
 1.4 As a user, I can search for books or authors I have read so that I can add them to my profile.
+
 1.6 As a user, I can add books to my profile so that I can keep track of what I have read.
 ![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-4.JPG)
 
 1.7 As a user, I can view a list of new releases by authors I follow so that I can find new books in a series.
+
 2.3 As a user, I can remove new releases from the list if I am uninterested in order to clean up the results.
+
 1.8 As a user, I can add new releases to my profile in order to follows those authors or indicated I have read the book.
 ![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-5.JPG)
 
 2 As a user, I can see my entire library from a profile page.
+
 2 As a user, I can create and organize my library by series.
 ![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-7.JPG)
 
@@ -45,7 +49,7 @@ This app helps readers track books they have read and learn about new book relea
 
 2.1 As a user, I can click on a book in the list for a plot summary so that I can refresh my memory on the book.
 
-3.3 As a user, I can group books by genre.
+<!--3.3 As a user, I can group books by genre.-->
 
 3.1 As a user, I can select favorites from my library in order to better organize my profile.
 

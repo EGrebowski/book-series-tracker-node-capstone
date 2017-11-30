@@ -36,6 +36,7 @@ button {
     border: 1px solid gray;
 }
 
+
 .search,
 .my-books,
 .new-releases,
@@ -47,19 +48,15 @@ button {
     border-radius: 5px;
 }
 
+
 .dashboard .search,
 .my-books,
 .new-releases,
 .search-results,
 .my-profile,
 .new-releases-full {
-    /*    background-color: rgba(139, 132, 103, 0.6);*/
-    /*    background-color: rgba(95, 158, 160, 0.3);*/
-    /*    background-color: rgba(245, 247, 246, 0.7);*/
-    /*    background-color: rgba(214, 201, 194, 0.8);*/
     background-color: rgba(247, 240, 222, 0.8);
 }
-
 nav {
     background-color: cadetblue;
     padding: 15px;
@@ -279,4 +276,19 @@ h4 {
 
 .new-releases-full .book-entry {
     border: 1px solid black;
+}
+
+footer {
+    text-align: center;
+    position: relative;
+    clear: both;
+    width: 100%;
+    background-color: cadetblue;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+footer li {
+    display: inline;
+    font-size: .85rem;
 }
