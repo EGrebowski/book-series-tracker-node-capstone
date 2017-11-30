@@ -18,7 +18,7 @@
 
 html {
     height: 100%;
-    background: url(images/background-image.jpeg) no-repeat center center fixed;
+    background: url(images/books-background-3.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -81,10 +81,13 @@ nav button {
 }
 
 header {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     padding-top: 20%;
     padding-bottom: 20%;
+    padding-left: 15%;
+    padding-right: 15%;
+    background-color: rgba(245, 247, 246, 0.2);
 }
 
 h1 {
@@ -109,11 +112,10 @@ main {
     margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
-    background: url(images/books-background-2.jpg) no-repeat center center fixed;
 }
 
 .placeholder {
-    font-size: 0;
+    color: rgba(214, 201, 194, 0);
 }
 
 form {
@@ -124,13 +126,22 @@ form {
     /*    padding-left: 40%;*/
 }
 
+label {
+    font-weight: bold;
+}
+
+input,
+button {
+    margin-top: 5px;
+}
+
 input {
-    /*    padding-left: 5px;*/
+    padding-left: 5px;
     padding-top: 2px;
     padding-bottom: 2px;
     /*    margin-top: 5px;*/
     /*    margin-right: 3px;*/
-    width: 40%;
+    /*    width: 40%;*/
 }
 
 .search button,
@@ -139,15 +150,16 @@ input {
     padding-bottom: 2px;
     padding-left: 4px;
     padding-right: 4px;
+    float: right;
 }
 
 h4 {
     font-size: 1.25rem;
     padding-bottom: 10px;
-    font-weight: normal;
+    text-decoration: underline;
 }
 
-.new-releases {
+.my-books {
     float: right;
 }
 
@@ -158,10 +170,33 @@ h4 {
     margin-top: 20px;
 }
 
-.author {
+.book-title {
+    font-family: 'Faustina', serif;
+    font-size: 1.1rem;
     font-weight: bold;
+    margin-top: 4px;
+    margin-bottom: 2px;
 }
 
+.author {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.book-blurb {
+    font-size: .8rem;
+}
+
+.add, .remove {
+    display: block;
+    font-size: .9rem;
+    font-family: 'Faustina', serif;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border: 1px solid gray;
+}
 .search-results {
     margin-top: 50px;
     border: 1px solid black;
