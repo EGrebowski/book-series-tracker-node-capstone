@@ -27,11 +27,13 @@
     <main role="main">
         <section class="dashboard">
             <section class="search col-12">
-                <form action="#" name="author-search">
+                <div class="col-4 placeholder">h</div>
+                <form action="#" name="author-search" class="col-4">
                     <label for="search-input">Find Books</label><br>
-                    <input type="text" name="search-input" id="search-input" placeholder="author search">
-                    <button type="submit">Search</button>
+                    <input type="text" name="search-input" id="search-input" placeholder="author search" class="col-8">
+                    <button type="submit" class="col-4">Search</button>
                 </form>
+                <div class="col-4 placeholder">f</div>
             </section>
 
             <section class="my-books col-7">
@@ -61,18 +63,104 @@
                     <img src="images/book-thumbnail-placeholder.jpg" />
                     <p class="book-title">Harry Potter and the Cursed Child</p>
                     <p class="author">J.K. Rowling</p>
+                    <button class="add" type="submit">Add to My Profile</button>
+                    <button class="remove" type="submit">Remove from List</button>
                 </div>
                 <div class="book-entry">
                     <img src="images/book-thumbnail-placeholder.jpg" />
                     <p class="book-title">Harry Potter and the Cursed Child</p>
                     <p class="author">J.K. Rowling</p>
+                    <button class="add" type="submit">Add to My Profile</button>
+                    <button class="remove" type="submit">Remove from List</button>
                 </div>
                 <a class="see-more" href="#">See More</a>
             </section>
         </section>
+
+        <section class="search-results col-12">
+            <form action="#" name="author-search">
+                <label for="search-input">Find Books</label><br>
+                <input type="text" name="search-input" id="search-input" placeholder="author search">
+                <button type="submit">Search</button>
+            </form>
+            <div class="results">
+                <div class="book-entry">
+                    <img src="images/book-thumbnail-placeholder.jpg" />
+                    <div class="book-info">
+                        <p class="book-title">Harry Potter and the Cursed Child</p>
+                        <p class="author">J.K. Rowling</p>
+                        <button type="submit">Add to My Profile</button>
+                    </div>
+                </div>
+                <div class="book-entry">
+                    <img src="images/book-thumbnail-placeholder.jpg" />
+                    <div class="book-info">
+                        <p class="book-title">Harry Potter and the Cursed Child</p>
+                        <p class="author">J.K. Rowling</p>
+                        <button type="submit">Add to My Profile</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-profile col-12">
+            <p>My Books</p>
+            <p>Organize by Series: Create New</p>
+            <form action="#" name="create-series">
+                <label for="search-input">Series Name</label><br>
+                <input type="text" name="search-input" id="search-input">
+                <button type="submit">Create</button>
+            </form>
+            <h4>My Book Series</h4>
+            <div class="series">
+                <p class="author">J.K. Rowling</p>
+                <p class="series-name">Harry Potter</p>
+                <div class="book-entry">
+                    <img src="images/book-thumbnail-placeholder.jpg" />
+                    <p class="book-title">Harry Potter and the Cursed Child</p>
+                    <p class="author">J.K. Rowling</p>
+                </div>
+                <div class="book-entry">
+                    <img src="images/book-thumbnail-placeholder-2.jpg" />
+                    <p class="book-title">Fantastic Beasts and Where to Find Them</p>
+                    <p class="author">J.K. Rowling</p>
+                </div>
+            </div>
+            <div class="series">
+                <p class="author">J.K. Rowling</p>
+                <p class="series-name">World of Harry Potter</p>
+                <div class="book-entry">
+                    <img src="images/book-thumbnail-placeholder.jpg" />
+                    <p class="book-title">Harry Potter and the Cursed Child</p>
+                    <p class="author">J.K. Rowling</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="new-releases-full col-12">
+            <h4>New Releases by My Authors</h4>
+            <div class="book-entry">
+                <img src="images/book-thumbnail-placeholder.jpg" />
+                <p class="book-title">Harry Potter and the Cursed Child</p>
+                <p class="author">J.K. Rowling</p>
+                <button class="add" type="submit">Add to My Profile</button>
+                <button class="remove" type="submit">Remove from List</button>
+            </div>
+            <div class="book-entry">
+                <img src="images/book-thumbnail-placeholder.jpg" />
+                <p class="book-title">Harry Potter and the Cursed Child</p>
+                <p class="author">J.K. Rowling</p>
+                <button class="add" type="submit">Add to My Profile</button>
+                <button class="remove" type="submit">Remove from List</button>
+            </div>
+        </section>
     </main>
 
     <footer role="contentinfo"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="client.js"></script>
+
 </body>
 
 

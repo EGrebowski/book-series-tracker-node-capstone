@@ -19,32 +19,33 @@ This app helps readers track books they have read and learn about new book relea
 ![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-1.JPG)
 
 1.2 As a visitor, I can sign up for an account in order to create a profile.
+![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-2.JPG)
 
 1.3 As a user, I can log into my account in order to save my progress.
-
-2.2 As a user, I can update my password in case I forget it and need to log in.
-![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-2.JPG)
+![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-6.JPG)
 
 1.5 As a user, I can view my dashboard when I log in in order to see integrated data about my account.
 ![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-3.JPG)
 
 1.4 As a user, I can search for books or authors I have read so that I can add them to my profile.
-
 1.6 As a user, I can add books to my profile so that I can keep track of what I have read.
 ![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-4.JPG)
 
 1.7 As a user, I can view a list of new releases by authors I follow so that I can find new books in a series.
-
 2.3 As a user, I can remove new releases from the list if I am uninterested in order to clean up the results.
-
 1.8 As a user, I can add new releases to my profile in order to follows those authors or indicated I have read the book.
 ![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-5.JPG)
+
+2 As a user, I can see my entire library from a profile page.
+2 As a user, I can create and organize my library by series.
+![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-7.JPG)
+
+2 As a user, I can assign a series to books in my library using a dropdown menu.
+![Wireframe](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/user-story-8.JPG)
 
 2.1 As a user, I can click on a book in the list for a plot summary so that I can refresh my memory on the book.
 
 3.3 As a user, I can group books by genre.
-
-3.4 As a user, I can group books by series in order to better organize my profile.
 
 3.1 As a user, I can select favorites from my library in order to better organize my profile.
 
