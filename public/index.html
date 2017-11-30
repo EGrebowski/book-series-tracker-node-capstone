@@ -57,7 +57,7 @@
             </section>
 
             <section class="my-books col-8">
-                <h4>My Books</h4>
+                <h4>My Favorites</h4>
                 <div class="book-entry col-6">
                     <img src="images/book-thumbnail-placeholder.jpg" />
                     <p class="book-title">Harry Potter and the Cursed Child</p>
@@ -94,6 +94,7 @@
                     <div class="book-info">
                         <p class="book-title">Harry Potter and the Cursed Child</p>
                         <p class="author">J.K. Rowling</p>
+                        <p class="book-blurb">"The Eighth Story. Nineteen Years Later. Based on an original new story by J.K. Rowling, John Tiffany and Jack Thorne. It was always difficult being Harry Potter and it isn't much easier now that he is an overworked employee of the Ministry of Magic, a husband, and father of three school-age children. While Harry grapples with a past that refuses to stay where it belongs, his youngest son Albus must struggle with the weight of a family legacy he never wanted. As past and present fuse ominously, both father and son learn the uncomfortable truth: sometimes, more</p>
                         <button type="submit">Add to My Profile</button>
                     </div>
                 </div>
@@ -102,6 +103,7 @@
                     <div class="book-info">
                         <p class="book-title">Harry Potter and the Cursed Child</p>
                         <p class="author">J.K. Rowling</p>
+
                         <button type="submit">Add to My Profile</button>
                     </div>
                 </div>
@@ -109,52 +111,88 @@
         </section>
 
         <section class="my-profile col-12">
-            <p>My Books</p>
-            <p>Organize by Series: Create New</p>
+            <h4>My Library</h4>
             <form action="#" name="create-series">
-                <label for="search-input">Series Name</label><br>
-                <input type="text" name="search-input" id="search-input">
+                <label for="search-input">Create a Book Series</label><br>
+                <input type="text" name="search-input" id="search-input" placeholder="series name">
                 <button type="submit">Create</button>
             </form>
-            <h4>My Book Series</h4>
-            <div class="series">
-                <p class="author">J.K. Rowling</p>
-                <p class="series-name">Harry Potter</p>
-                <div class="book-entry">
-                    <img src="images/book-thumbnail-placeholder.jpg" />
-                    <p class="book-title">Harry Potter and the Cursed Child</p>
-                    <p class="author">J.K. Rowling</p>
-                </div>
-                <div class="book-entry">
-                    <img src="images/book-thumbnail-placeholder-2.jpg" />
-                    <p class="book-title">Fantastic Beasts and Where to Find Them</p>
-                    <p class="author">J.K. Rowling</p>
+            <h4>My Series</h4>
+            <div class="series col-12">
+                <p class="series-author">J.K. Rowling, </p>
+                <p class="series-name">Harry Potter</p><br/>
+                <div class="placeholder col-1">w</div>
+                <div class="books-in-series col-11">
+                    <div class="book-entry col-4">
+                        <img src="images/book-thumbnail-placeholder.jpg" />
+                        <p class="book-title">Harry Potter and the Cursed Child</p>
+                        <p class="author">J.K. Rowling</p>
+                    </div>
+                    <div class="book-entry col-4">
+                        <img src="images/book-thumbnail-placeholder-2.jpg" />
+                        <p class="book-title">Fantastic Beasts and Where to Find Them</p>
+                        <p class="author">J.K. Rowling</p>
+                    </div>
+                    <div class="book-entry col-4">
+                        <img src="images/book-thumbnail-placeholder.jpg" />
+                        <p class="book-title">Harry Potter and the Cursed Child</p>
+                        <p class="author">J.K. Rowling</p>
+                    </div>
                 </div>
             </div>
-            <div class="series">
-                <p class="author">J.K. Rowling</p>
-                <p class="series-name">World of Harry Potter</p>
-                <div class="book-entry">
-                    <img src="images/book-thumbnail-placeholder.jpg" />
-                    <p class="book-title">Harry Potter and the Cursed Child</p>
-                    <p class="author">J.K. Rowling</p>
+            <div class="series col-12">
+                <p class="series-author">J.K. Rowling, </p>
+                <p class="series-name">World of Harry Potter</p><br/>
+                <div class="placeholder col-1">w</div>
+                <div class="books-in-series col-11">
+                    <div class="book-entry">
+                        <img src="images/book-thumbnail-placeholder.jpg" />
+                        <p class="book-title">Harry Potter and the Cursed Child</p>
+                        <p class="author">J.K. Rowling</p>
+                    </div>
+                </div>
+            </div>
+            <h4>Other Books</h4>
+            <div class="loose-books-wrapper col-12">
+                <div class="placeholder col-1">w</div>
+                <div class="loose-books col-11">
+                    <div class="book-entry">
+                        <img src="images/book-thumbnail-placeholder.jpg" />
+                        <p class="book-title">Harry Potter and the Cursed Child</p>
+                        <p class="author">J.K. Rowling</p>
+                    </div>
+                    <div class="book-entry col-4">
+                        <img src="images/book-thumbnail-placeholder-2.jpg" />
+                        <p class="book-title">Fantastic Beasts and Where to Find Them</p>
+                        <p class="author">J.K. Rowling</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="new-releases-full col-12">
             <h4>New Releases by My Authors</h4>
-            <div class="book-entry">
+            <div class="book-entry col-4">
                 <img src="images/book-thumbnail-placeholder.jpg" />
                 <p class="book-title">Harry Potter and the Cursed Child</p>
                 <p class="author">J.K. Rowling</p>
+                <p class="book-blurb">"The Eighth Story. Nineteen Years Later. Based on an original new story by J.K. Rowling, John Tiffany and Jack Thorne. It was always difficult being Harry Potter and it isn't much easier now that he is an overworked employee of the Ministry of Magic, a husband, and father of three school-age children. While Harry grapples with a past that refuses to stay where it belongs, his youngest son Albus must struggle with the weight of a family legacy he never wanted. As past and present fuse ominously, both father and son learn the uncomfortable truth: sometimes, more</p>
                 <button class="add" type="submit">Add to My Profile</button>
                 <button class="remove" type="submit">Remove from List</button>
             </div>
-            <div class="book-entry">
+            <div class="book-entry col-4">
                 <img src="images/book-thumbnail-placeholder.jpg" />
                 <p class="book-title">Harry Potter and the Cursed Child</p>
                 <p class="author">J.K. Rowling</p>
+                <p class="book-blurb">"The Eighth Story. Nineteen Years Later. Based on an original new story by J.K. Rowling, John Tiffany and Jack Thorne. It was always difficult being Harry Potter and it isn't much easier now that he is an overworked employee of the Ministry of Magic, a husband, and father of three school-age children. While Harry grapples with a past that refuses to stay where it belongs, his youngest son Albus must struggle with the weight of a family legacy he never wanted. As past and present fuse ominously, both father and son learn the uncomfortable truth: sometimes, more</p>
+                <button class="add" type="submit">Add to My Profile</button>
+                <button class="remove" type="submit">Remove from List</button>
+            </div>
+            <div class="book-entry col-4">
+                <img src="images/book-thumbnail-placeholder-2.jpg" />
+                <p class="book-title">Fantastic Beasts and Where to Find Them</p>
+                <p class="author">J.K. Rowling</p>
+                <p class="book-blurb">Fantastic Beasts and Where to Find Them, Newt Scamander's classic compendium of magical creatures, has delighted generations of wizarding readers. Now, in this updated edition with a new foreword by Newt himself and the unveiling of six beasts little known outside the American wizarding, more</p>
                 <button class="add" type="submit">Add to My Profile</button>
                 <button class="remove" type="submit">Remove from List</button>
             </div>
