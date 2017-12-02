@@ -17,25 +17,28 @@
 }
 
 html {
+    /*
+    background: url(images/background-image-2.jpeg) no-repeat center center fixed;
     height: 100%;
-    background: url(images/books-background-3.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+*/
+    background-color: dimgray;
 }
 
 body {
     font-size: 16px;
     height: 100%;
     font-family: 'Noto Sans', sans-serif;
+    margin: 0;
 }
 
 button {
     cursor: pointer;
     border: 1px solid gray;
 }
-
 
 .search,
 .my-books,
@@ -45,9 +48,7 @@ button {
 .new-releases-full {
     padding: 20px;
     margin-top: 20px;
-    border-radius: 5px;
 }
-
 
 .dashboard .search,
 .my-books,
@@ -55,10 +56,30 @@ button {
 .search-results,
 .my-profile,
 .new-releases-full {
-    background-color: rgba(247, 240, 222, 0.8);
+    /*    background-color: rgba(247, 240, 222, 0.8);*/
 }
+
+.dashboard {
+    margin: 0;
+}
+
+.search-results {
+    background-color: gray;
+    margin: 0;
+}
+
+.my-profile {
+    background-color: dimgray;
+    margin: 0;
+}
+
+.new-releases-full {
+    background-color: darkgray;
+    margin: 0;
+}
+
 nav {
-    background-color: cadetblue;
+    background-color: rgb(101, 145, 118);
     padding: 15px;
     position: fixed;
     width: 100%;
@@ -76,31 +97,51 @@ div {
     display: inline-block;
 }
 
-.nav-buttons {
+nav div {
     float: right;
+    font-size: 0;
+}
+
+nav a {
+    font-size: .9rem;
+    padding-right: 8px;
+    padding-left: 8px;
+    border-right: 1px solid black;
+    margin-left: none;
+    margin-right: none;
+}
+
+nav a:last-of-type {
     border: none;
 }
 
-nav button {
-    padding: 5px;
-    /*    border: 1px solid #24292e;*/
-}
-
 header {
+    /*
+    height: 100%;
     width: 100%;
+*/
+    background: url(images/background-image-2.jpeg) no-repeat;
+    /*
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+*/
+    background-size: cover;
     margin: 0 auto;
     padding-top: 20%;
-    padding-bottom: 20%;
+    padding-bottom: 30%;
+    /*
     padding-left: 15%;
     padding-right: 15%;
-    background-color: rgba(245, 247, 246, 0.2);
+*/
+    /*    background-color: rgba(245, 247, 246, 0.2);*/
 }
 
 h1 {
     font-family: 'Cinzel Decorative', cursive;
     font-size: 4rem;
     /*    font-weight: normal;*/
-    color: black;
+    /*    color: cadetblue;*/
 }
 
 h2 {
@@ -113,25 +154,67 @@ header p {
     font-weight: bold;
 }
 
+.login-box {
+    /*    background-color: white;*/
+    background-color: rgba(181, 153, 124, 0.8);
+    /*    float: right;*/
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.login-box fieldset {
+    font-weight: bold;
+}
+
+.login-box form label {
+    display: block;
+    margin-top: 10px;
+    width: 90%;
+}
+
+.login-box input {
+    margin-top: -20px;
+    display: block;
+    width: 90%;
+}
+
 main {
     max-width: 1000px;
     margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
+    padding-top: 200px;
+}
+
+.dashboard section {
+   border: 1px solid black;
 }
 
 .dashboard .search {
-    background-color: rgba(247, 240, 222, 0.8);
+    /*    background-color: rgba(247, 240, 222, 0.8);*/
     padding: 20px;
     margin-top: 20px;
-    border-radius: 5px;
+}
+
+.dashboard .new-releases {
+    margin-left: 1%;
+}
+
+.dashboard .my-books {
+margin-right: 1%;
+}
+
+.my-books .col-4 {
+    width: 33.33%;
 }
 
 .placeholder {
     color: rgba(214, 201, 194, 0);
 }
 
-form {
+.search form {
     /*    width: 100%;*/
     display: inline-block;
     margin-left: 0 auto;
@@ -192,7 +275,7 @@ h4 {
 }
 
 .author {
-    font-weight: bold;
+/*    font-weight: bold;*/
     margin-bottom: 4px;
 }
 
@@ -231,6 +314,8 @@ h4 {
 
 .results .book-entry img {
     vertical-align: text-top;
+    display: inline-block;
+    width: 15%;
 }
 
 .book-info {
@@ -238,14 +323,12 @@ h4 {
     vertical-align: text-top;
     padding-top: 2px;
     padding-left: 5px;
+    width: 85%;
+    float: right;
 }
 
 .book-info button {
     float: left;
-}
-
-.my-profile {
-    margin-top: 30px;
 }
 
 .my-profile form {
@@ -274,8 +357,20 @@ h4 {
     font-weight: bold;
 }
 
+.image-background {
+    background-color: gray;
+    width: 100%;
+}
+
+.image-background img {
+    margin: 10px auto;
+    width: 50%;
+    display: block;
+}
+
 .new-releases-full .book-entry {
-    border: 1px solid black;
+    height: 400px;
+    overflow-y: scroll;
 }
 
 footer {
