@@ -25,7 +25,7 @@ html {
     -o-background-size: cover;
     background-size: cover;
 */
-    background-color: dimgray;
+    background-color: #202020;
 }
 
 body {
@@ -38,6 +38,10 @@ body {
 button {
     cursor: pointer;
     border: 1px solid gray;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .search,
@@ -47,16 +51,7 @@ button {
 .my-profile,
 .new-releases-full {
     padding: 20px;
-    margin-top: 20px;
-}
-
-.dashboard .search,
-.my-books,
-.new-releases,
-.search-results,
-.my-profile,
-.new-releases-full {
-    /*    background-color: rgba(247, 240, 222, 0.8);*/
+    /*    margin-top: 20px;*/
 }
 
 .dashboard {
@@ -64,12 +59,12 @@ button {
 }
 
 .search-results {
-    background-color: gray;
+    background-color: #282828;
     margin: 0;
 }
 
 .my-profile {
-    background-color: dimgray;
+    background-color: #202020;
     margin: 0;
 }
 
@@ -79,17 +74,20 @@ button {
 }
 
 nav {
-    background-color: rgb(101, 145, 118);
+    /*    background-color: rgb(101, 145, 118);*/
+    background-color: #3e273c;
     padding: 15px;
     position: fixed;
     width: 100%;
     margin: 0;
     z-index: 100;
+    color: #9f939e;
 }
 
 nav h3 {
     font-family: 'Cinzel Decorative', cursive;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 nav h3,
@@ -106,9 +104,21 @@ nav a {
     font-size: .9rem;
     padding-right: 8px;
     padding-left: 8px;
-    border-right: 1px solid black;
-    margin-left: none;
-    margin-right: none;
+    margin-left: 0;
+    margin-right: 0;
+    color: #BBB78A;
+    border-right: 2px solid #BBB78A;
+    font-weight: bold;
+    /*
+    color: #678055;
+    background-color: #203A0F;
+    border: 3px solid #202020;
+*/
+}
+
+nav a:hover {
+    color: #678055;
+    /*color: #203A0F;*/
 }
 
 nav a:last-of-type {
@@ -116,25 +126,13 @@ nav a:last-of-type {
 }
 
 header {
-    /*
-    height: 100%;
-    width: 100%;
-*/
-    background: url(images/background-image-2.jpeg) no-repeat;
-    /*
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-*/
+    background: url(images/books-background-blur.jpg) no-repeat center center fixed;
     background-size: cover;
+    /*    background: rgba(245, 247, 246, 0.2);*/
     margin: 0 auto;
     padding-top: 20%;
     padding-bottom: 30%;
-    /*
-    padding-left: 15%;
-    padding-right: 15%;
-*/
-    /*    background-color: rgba(245, 247, 246, 0.2);*/
+    color: white;
 }
 
 h1 {
@@ -142,21 +140,29 @@ h1 {
     font-size: 4rem;
     /*    font-weight: normal;*/
     /*    color: cadetblue;*/
+    color: #2366b3;
+    text-shadow: 2px 2px black;
 }
 
 h2 {
     font-size: 1.8rem;
+    text-shadow: 2px 2px black;
 }
 
 header p {
     margin-top: 10px;
     font-size: 1.2rem;
     font-weight: bold;
+    text-shadow: 2px 2px black;
+}
+
+.title {
+    background-color: rgba(245, 247, 246, 0.3);
 }
 
 .login-box {
     /*    background-color: white;*/
-    background-color: rgba(181, 153, 124, 0.8);
+    background-color: rgba(187, 183, 138, 0.6);
     /*    float: right;*/
     padding-top: 20px;
     padding-bottom: 20px;
@@ -180,30 +186,49 @@ header p {
     width: 90%;
 }
 
-main {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 200px;
-}
-
-.dashboard section {
-   border: 1px solid black;
+#confirm-password {
+    margin-bottom: 15px;
 }
 
 .dashboard .search {
     /*    background-color: rgba(247, 240, 222, 0.8);*/
     padding: 20px;
     margin-top: 20px;
+    color: #BBB78A;
+}
+
+.dashboard form {
+    background-color: #2e2e2e;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 2px;
+}
+
+.dashboard input,
+.search input {
+    margin-top: 5px;
+}
+
+.dashboard button,
+.search button {
+    margin-top: 5px;
 }
 
 .dashboard .new-releases {
     margin-left: 1%;
+    border-right: 2px dotted #7F5E7C;
+}
+
+.book-entry button {
+    background-color: #918D61;
+}
+
+.book-entry button:hover {
+    background-color: #BBB78A;
 }
 
 .dashboard .my-books {
-margin-right: 1%;
+    margin-right: 1%;
 }
 
 .my-books .col-4 {
@@ -214,21 +239,16 @@ margin-right: 1%;
     color: rgba(214, 201, 194, 0);
 }
 
-.search form {
-    /*    width: 100%;*/
-    display: inline-block;
-    margin-left: 0 auto;
-    margin-right: 0 auto;
-    /*    padding-left: 40%;*/
+.search-results form {
+    background-color: #2e2e2e;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 2px;
 }
 
-label {
+.search label {
     font-weight: bold;
-}
-
-input,
-button {
-    margin-top: 5px;
+    color: #BBB78A;
 }
 
 input {
@@ -242,17 +262,14 @@ input {
 
 .search button,
 .search-results button {
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-left: 4px;
-    padding-right: 4px;
     float: right;
 }
 
 h4 {
     font-size: 1.25rem;
     padding-bottom: 10px;
-    text-decoration: underline;
+    /*    text-decoration: underline;*/
+    color: #BBB78A;
 }
 
 .my-books {
@@ -272,15 +289,31 @@ h4 {
     font-weight: bold;
     margin-top: 4px;
     margin-bottom: 2px;
+    color: #918D61;
 }
 
 .author {
-/*    font-weight: bold;*/
+    /*    font-weight: bold;*/
     margin-bottom: 4px;
+    color: #918D61;
+}
+
+.more {
+    font-size: .78rem;
+    margin-bottom: .5rem;
+    color: #634260;
+    font-weight: bold;
+}
+
+.more:hover,
+.see-more:hover {
+    color: #7F5E7C;
+    cursor: pointer;
 }
 
 .book-blurb {
     font-size: .8rem;
+    color: #7e9090;
 }
 
 .add,
@@ -292,12 +325,12 @@ h4 {
     padding-right: 5px;
     padding-top: 2px;
     padding-bottom: 2px;
-    border: 1px solid gray;
+    border: none;
 }
 
 .see-more {
-    cursor: pointer;
     text-decoration: underline;
+    color: #634260;
 }
 
 .search-results {
@@ -322,13 +355,15 @@ h4 {
     display: inline-block;
     vertical-align: text-top;
     padding-top: 2px;
-    padding-left: 5px;
+    padding-left: 10px;
     width: 85%;
     float: right;
 }
 
 .book-info button {
     float: left;
+    background-color: #918D61;
+    margin-top: 10px;
 }
 
 .my-profile form {
@@ -358,13 +393,13 @@ h4 {
 }
 
 .image-background {
-    background-color: gray;
+    background-color: #7e9090;
     width: 100%;
 }
 
 .image-background img {
     margin: 10px auto;
-    width: 50%;
+    width: 40%;
     display: block;
 }
 
