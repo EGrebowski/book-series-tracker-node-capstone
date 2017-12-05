@@ -1,3 +1,16 @@
+"use strict";
+
+// Switch login and signup forms
+$('#to-login').on("click", function (event) {
+    $('.signup-box').hide();
+    $('.login-box').show();
+});
+
+$('#to-signup').on("click", function (event) {
+    $('.login-box').hide();
+    $('.signup-box').show();
+});
+
 //Handle navbar links
 //Navigate to dashboard from navbar
 $('#nav-dashboard').on("click", function (event) {
@@ -48,15 +61,19 @@ $('.remove').on("click", function (event) {
 });
 
 // show/hide books in series
-$('.series').on("click", function (event) {
-    $('.')
-})
+$('.series-author, .series-name').on("click", this, function (event) {
+    console.log("test");
+    $(this).nextAll('.books-in-series').toggleClass("hidden");
+});
+
 
 $(document).ready(function (event) {
-    //        $(".dashboard").hide();
-    //        $(".search-results").hide();
-    //        $(".my-profile").hide();
-    //        $(".new-releases-full").hide();
+    $(".dashboard").hide();
+    $(".search-results").hide();
+    //    $(".my-profile").hide();
+    $(".new-releases-full").hide();
+    $(".login-box").hide();
+    //    $('.books-in-series').hide();
 });
 
 

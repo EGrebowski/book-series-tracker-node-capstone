@@ -165,7 +165,8 @@ header p {
     padding: 20px;
 }
 
-.login-box {
+.login-box,
+.signup-box {
     /*    background-color: white;*/
     background-color: #BBB78A;
     /*    float: right;*/
@@ -175,26 +176,50 @@ header p {
     padding-right: 20px;
 }
 
-.login-box fieldset {
+.login-box fieldset,
+.signup-box fieldset {
     font-weight: bold;
     color: #2C0B29;
 }
 
-.login-box form label {
+.login-box form label,
+.signup-box form label {
     display: block;
     margin-top: 10px;
     width: 90%;
     color: #2C0B29;
 }
 
-.login-box input {
+.login-box input,
+.signup-box input {
     margin-top: -20px;
     display: block;
     width: 90%;
 }
 
+.header form button {
+    display: block;
+    width: 90%;
+}
+
+.login-box button {
+    margin-top: 20px;
+}
+
+.header form p,
+.header form a {
+    text-align: center;
+    padding-top: 10px;
+    display: inline-block;
+    font-size: .85rem;
+}
+
 #confirm-password {
     margin-bottom: 15px;
+}
+
+.dashboard {
+    padding-top: 50px;
 }
 
 .dashboard .search {
@@ -374,6 +399,10 @@ h4 {
     margin-top: 10px;
 }
 
+.my-profile {
+    padding-top: 120px;
+}
+
 .my-profile form {
     margin-bottom: 40px;
 }
@@ -402,6 +431,11 @@ h4 {
     color: #7F5E7C;
 }
 
+.series {
+    display: block;
+    width: 100%;
+}
+
 select {
     padding-top: 2px;
     padding-bottom: 2px;
@@ -421,6 +455,10 @@ option {
     margin: 10px auto;
     width: 40%;
     display: block;
+}
+
+.new-releases-full {
+    padding-top: 120px;
 }
 
 .new-releases-full .book-entry {
@@ -456,4 +494,8 @@ footer li a:hover {
 label {
     color: #918D61;
     ;
+}
+
+.hidden {
+    display: none;
 }
