@@ -200,6 +200,8 @@ header p {
 .header form button {
     display: block;
     width: 90%;
+    background-color: #203A0F;
+    color: #8CA57A;
 }
 
 .login-box button {
