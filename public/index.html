@@ -37,7 +37,7 @@
                 <input type="text" name="password" id="password" />
                 <label for="confirm-password">Confirm Password</label><br>
                 <input type="text" name="confirm-password" id="confirm-password" />
-                <button type="submit" class="col-3">Sign Up</button><br/>
+                <button id="signup-btn" type="submit" class="col-3">Sign Up</button><br/>
                 <p>Already have an account? </p><a id="to-login" href="#">Log In</a>
             </form>
         </div>
@@ -48,7 +48,7 @@
                 <input type="text" name="username" id="username" />
                 <label for="password">Password</label><br>
                 <input type="text" name="password" id="password" />
-                <button type="submit" class="col-3">Log In</button>
+                <button id="login-btn" type="submit" class="col-3">Log In</button>
                 <p>Don't have an account? </p><a href="#" id="to-signup">Sign up</a>
             </form>
         </div>
@@ -165,28 +165,30 @@
         <div class="series">
             <p class="series-author">My Series, </p>
             <p class="series-name">Harry Potter</p><br/>
-            <div class="placeholder col-1">w</div>
-            <div class="books-in-series hidden col-11">
-                <div class="book-entry col-4">
-                    <div class="image-background">
-                        <img src="images/book-thumbnail-placeholder.jpg" />
+            <div class="series-wrapper hidden">
+                <div class="placeholder col-1">w</div>
+                <div class="books-in-series col-11">
+                    <div class="book-entry col-4">
+                        <div class="image-background">
+                            <img src="images/book-thumbnail-placeholder.jpg" />
+                        </div>
+                        <p class="book-title">Harry Potter and the Cursed Child</p>
+                        <p class="author">J.K. Rowling</p>
                     </div>
-                    <p class="book-title">Harry Potter and the Cursed Child</p>
-                    <p class="author">J.K. Rowling</p>
-                </div>
-                <div class="book-entry col-4">
-                    <div class="image-background">
-                        <img src="images/book-thumbnail-placeholder-2.jpg" />
+                    <div class="book-entry col-4">
+                        <div class="image-background">
+                            <img src="images/book-thumbnail-placeholder-2.jpg" />
+                        </div>
+                        <p class="book-title">Fantastic Beasts and Where to Find Them</p>
+                        <p class="author">J.K. Rowling</p>
                     </div>
-                    <p class="book-title">Fantastic Beasts and Where to Find Them</p>
-                    <p class="author">J.K. Rowling</p>
-                </div>
-                <div class="book-entry col-4">
-                    <div class="image-background">
-                        <img src="images/book-thumbnail-placeholder.jpg" />
+                    <div class="book-entry col-4">
+                        <div class="image-background">
+                            <img src="images/book-thumbnail-placeholder.jpg" />
+                        </div>
+                        <p class="book-title">Harry Potter and the Cursed Child</p>
+                        <p class="author">J.K. Rowling</p>
                     </div>
-                    <p class="book-title">Harry Potter and the Cursed Child</p>
-                    <p class="author">J.K. Rowling</p>
                 </div>
             </div>
         </div>
