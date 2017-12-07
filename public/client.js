@@ -1,4 +1,6 @@
 "use strict";
+// logged in username global variable
+var username = "";
 
 // Return to landing page
 $("nav h3").on("click", function (event) {
@@ -23,17 +25,103 @@ $('#to-signup').on("click", function (event) {
 
 // From login
 $("#login-btn").on("click", function (event) {
-    console.log("test login button");
     event.preventDefault();
-    $('.header').hide();
-    $('.dashboard').show();
+    // take input from user
+    var inputEmail = $('#login-username').val();
+    var inputPassword = $('#login-password').val();
+    console.log(inputEmail, inputPassword);
+    // check username for spaces, empty, undefined
+    if ((!inputEmail) || (inputEmail.length < 1) || (inputEmail.indexOf(' ') > 0)) {
+        alert('Invalid username');
+    }
+    // check password for spaces, empty, undefined
+    else if ((!inputPassword) || (inputPassword.length < 1) || (inputPassword.indexOf(' ') > 0)) {
+        alert('Invalid password');
+    }
+    // if username and password are valid
+    else {
+        // create user object
+        var usernamePwObject = {
+            username: inputEmail,
+            password: inputPassword
+        };
+        username = inputEmail;
+        // make API call with user object
+        $.ajax({
+                type: "POST",
+                url: "/login",
+                dataType: 'json',
+                data: JSON.stringify(usernamePwObject),
+                contentType: 'application/json'
+            })
+            // if API call is successful
+            .done(function (result) {
+                // display result and login user
+                console.log(result);
+                username = result.username;
+                $('.header').hide();
+                $('.dashboard').show();
+            })
+            // if API call unsuccessful
+            .fail(function (jqXHR, error, errorThrown) {
+                // return errors
+                console.log(jqXHR);
+                console.log(error);
+                console.log(errorThrown);
+                alert('Invalid user and password combination');
+            });
+    }
 });
 
 // From signup
 $("#signup-btn").on("click", function (event) {
     event.preventDefault();
-    $('.header').hide();
-    $('.search-results').show();
+    // take input from user
+    var inputEmail = $('#username').val();
+    var inputPassword = $('#password').val();
+    var confirmPassword = $('#confirm-password').val();
+    console.log(inputEmail, inputPassword, confirmPassword);
+    // validate email
+    if ((!inputEmail) || (inputEmail.length < 1) || (inputEmail.indexOf(' ') > 0)) {
+        alert('Invalid username');
+    }
+    // validate password
+    else if ((!inputPassword) || (inputPassword.length < 1) || (inputPassword.indexOf(' ') > 0)) {
+        alert('Invalid password');
+    }
+    // validate confirmPassword
+    else if (inputPassword != confirmPassword) {
+        alert('Passwords must match');
+    }
+    // if username and password are valid, make api call to create new user
+    else {
+        // generate user/password object
+        var usernamePwObject = {
+            username: inputEmail,
+            password: inputPassword
+        };
+        // using user/password object, make the local login API call
+        $.ajax({
+                type: "POST",
+                url: "/users/create",
+                dataType: 'json',
+                data: JSON.stringify(usernamePwObject),
+                contentType: 'application/json'
+            })
+            // if login is successful
+            .done(function (result) {
+                // display results
+                $('.header').hide();
+                $('.search-results').show();
+            })
+            // if login is unsuccessful
+            .fail(function (jqXHR, error, errorThrown) {
+                // display errors
+                console.log(jqXHR);
+                console.log(error);
+                console.log(errorThrown);
+            });
+    };
 });
 
 //Handle navbar links
@@ -79,7 +167,6 @@ $("#dashboard-search").on("click", function (event) {
     event.preventDefault();
     $('.dashboard').hide();
     $('.search-results').show();
-
 });
 
 // remove book entry from new releases
@@ -90,8 +177,8 @@ $('.remove').on("click", function (event) {
 // show/hide books in series
 $('.series-author, .series-name').on("click", this, function (event) {
     console.log("test");
-    //    $(this).nextAll('.books-in-series').toggleClass("hidden");
-    $(this).nextAll('.series-wrapper').toggleClass("hidden");
+    //    $(this).nextAll('.books-in-series').toggleClass("hidden")
+    $(this).nextAll('.series-wrapper').toggle();
 });
 
 
@@ -102,6 +189,7 @@ $(document).ready(function (event) {
     $(".new-releases-full").hide();
     $(".login-box").hide();
     //    $('.books-in-series').hide();
+    $(".series-wrapper").hide();
 });
 
 

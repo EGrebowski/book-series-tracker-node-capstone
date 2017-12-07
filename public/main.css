@@ -426,6 +426,12 @@ h4 {
     color: #918D61;
 }
 
+.series-author:hover,
+.series-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .my-profile .series-name {
     font-family: 'Faustina', serif;
     font-size: 1.1rem;
@@ -436,6 +442,10 @@ h4 {
 .series {
     display: block;
     width: 100%;
+}
+
+#other-books {
+    margin-top: 30px;
 }
 
 select {
@@ -496,8 +506,4 @@ footer li a:hover {
 label {
     color: #918D61;
     ;
-}
-
-.hidden {
-    display: none;
 }

@@ -20,7 +20,7 @@
         </div>
     </nav>
 
-    <section class="header">s
+    <section class="header">
         <div class="placeholder col-1">w</div>
         <div class="title col-5">
             <h1>Next Book</h1>
@@ -45,9 +45,9 @@
             <form action="#" name="login">
                 <fieldset name="login">Log In</fieldset>
                 <label for="username">Username</label><br>
-                <input type="text" name="username" id="username" />
+                <input type="text" name="username" id="login-username" />
                 <label for="password">Password</label><br>
-                <input type="text" name="password" id="password" />
+                <input type="text" name="password" id="login-password" />
                 <button id="login-btn" type="submit" class="col-3">Log In</button>
                 <p>Don't have an account? </p><a href="#" id="to-signup">Sign up</a>
             </form>
@@ -165,7 +165,7 @@
         <div class="series">
             <p class="series-author">My Series, </p>
             <p class="series-name">Harry Potter</p><br/>
-            <div class="series-wrapper hidden">
+            <div class="series-wrapper">
                 <div class="placeholder col-1">w</div>
                 <div class="books-in-series col-11">
                     <div class="book-entry col-4">
@@ -195,18 +195,20 @@
         <div class="series">
             <p class="series-author">J.K. Rowling, </p>
             <p class="series-name">World of Harry Potter</p><br/>
-            <div class="placeholder col-1">w</div>
-            <div class="books-in-series hidden col-11">
-                <div class="book-entry">
-                    <div class="image-background">
-                        <img src="images/book-thumbnail-placeholder.jpg" />
+            <div class="series-wrapper">
+                <div class="placeholder col-1">w</div>
+                <div class="books-in-series col-11">
+                    <div class="book-entry">
+                        <div class="image-background">
+                            <img src="images/book-thumbnail-placeholder.jpg" />
+                        </div>
+                        <p class="book-title">Harry Potter and the Cursed Child</p>
+                        <p class="author">J.K. Rowling</p>
                     </div>
-                    <p class="book-title">Harry Potter and the Cursed Child</p>
-                    <p class="author">J.K. Rowling</p>
                 </div>
             </div>
         </div>
-        <h4>Other Books</h4>
+        <h4 id="other-books">Other Books</h4>
         <div class="loose-books-wrapper col-12">
             <div class="placeholder col-1">w</div>
             <div class="loose-books col-11">
