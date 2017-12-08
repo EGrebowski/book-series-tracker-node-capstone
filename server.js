@@ -168,6 +168,35 @@ app.post('/users/create', function (req, res) {
     });
 });
 
+
+// POST: make API call for Google Books search results
+app.post('/search', function (req, res) {
+    var searchTerm = req.searchTerm;
+    var params = {
+        q: searchTerm,
+        maxResults: 15;
+        key: 'AIzaSyB4W3-wdcG_-eTcoNMuLalqYQtnkcCv-d0'
+    };
+    url = 'https://www.googleapis.com/books/v1/volumes';
+    $.getJSON(url, params, function (data) {
+        console.log(data);
+        //        showResultsBooks(data);
+    });
+
+    function (err, lead) {
+        // step b6: return the result of DB call
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        // send the result back to client.js
+        res.status(201).json(lead);
+
+    });
+});
+
+
 // POST: creating a new lead
 // step b4 (continuing from client.js): local API endpoint in server.js
 app.post('/leads', function (req, res) {
