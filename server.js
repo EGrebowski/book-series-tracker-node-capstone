@@ -1,14 +1,18 @@
 "use strict";
 
 var User = require('./models/user');
-//var Lead = require('./models/lead');
+var Book = require('./models/book');
 var bodyParser = require('body-parser');
 var config = require('./config');
+var unirest = require('unirest');
+var events = require('events');
 var mongoose = require('mongoose');
 var cors = require('cors');
 var bcrypt = require('bcryptjs');
 var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
+var https = require('https');
+var http = require('http');
 var express = require('express');
 var app = express();
 app.use(bodyParser.json());
@@ -168,58 +172,51 @@ app.post('/users/create', function (req, res) {
     });
 });
 
+// external API call
+var getBooksFromGoogle = function (searchTerm) {
+    var emitter = new events.EventEmitter();
+    unirest.get('https://www.googleapis.com/books/v1/volumes?q=' + searchTerm + '&maxResults=15&key=AIzaSyB4W3-wdcG_-eTcoNMuLalqYQtnkcCv-d0')
+        //after api call we get the response inside the "response" parameter
+        .end(function (response) {
+            //success scenario
+            if (response.ok) {
+                emitter.emit('end', response.body);
+            }
+            //failure scenario
+            else {
+                emitter.emit('error', response.code);
+            }
+        });
+    return emitter;
+};
 
-// POST: make API call for Google Books search results
-app.post('/search', function (req, res) {
-    var searchTerm = req.searchTerm;
-    var params = {
-        q: searchTerm,
-        maxResults: 15;
-        key: 'AIzaSyB4W3-wdcG_-eTcoNMuLalqYQtnkcCv-d0'
-    };
-    url = 'https://www.googleapis.com/books/v1/volumes';
-    $.getJSON(url, params, function (data) {
-        console.log(data);
-        //        showResultsBooks(data);
+
+// GET: make API call for Google Books search results
+app.get('/search/:searchTerm', function (req, res) {
+    var searchRequest = getBooksFromGoogle(req.params.searchTerm);
+    //get the data from the first api call
+    searchRequest.on('end', function (item) {
+        res.json(item);
     });
 
-    function (err, lead) {
-        // step b6: return the result of DB call
-        if (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        }
-        // send the result back to client.js
-        res.status(201).json(lead);
-
+    //error handling
+    searchRequest.on('error', function (code) {
+        res.sendStatus(code);
     });
 });
 
 
-// POST: creating a new lead
+
+// POST: creating a new book
 // step b4 (continuing from client.js): local API endpoint in server.js
-app.post('/leads', function (req, res) {
+app.post('/add-to-favorites', function (req, res) {
     // step b5: send the local data to the database
-    Lead.create({
-        position: req.body.position,
-        company: req.body.company,
-        funnelStage: req.body.funnelStage,
-        companyOverview: req.body.companyOverview,
-        companySize: req.body.companySize,
-        positionLocation: req.body.positionLocation,
-        salaryBenefits: req.body.salaryBenefits,
-        jobDescription: req.body.jobDescription,
-        applicationDate: req.body.applicationDate,
-        contactName: req.body.contactName,
-        contactEmail: req.body.contactEmail,
-        applicationMaterials: req.body.applicationMaterials,
-        interviewDate: req.body.interviewDate,
-        interviewFollowUp: req.body.interviewFollowUp,
-        leadSource: req.body.leadSource,
-        notes: req.body.notes,
-        rating: req.body.rating,
-        username: req.body.username
+    Book.create({
+        bookTitle: req.body.bookTitle,
+        bookAuthor: req.body.bookAuthor,
+        bookThumbnail: req.body.bookThumbnail,
+        bookUser: req.body.bookUser,
+        bookSeries: req.body.bookSeries
     }, function (err, lead) {
         // step b6: return the result of DB call
         if (err) {
@@ -232,6 +229,22 @@ app.post('/leads', function (req, res) {
 
     });
 });
+
+app.get('/get-favorites/:username', function (req, res) {
+    Book.find({
+            bookUser: req.params.username
+        },
+
+        function (err, item) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Internal Server Error'
+                });
+            }
+            res.status(200).json(item);
+        });
+});
+
 
 // PUT: updating a lead
 app.put('/leads/:id', function (req, res) {
