@@ -2,6 +2,7 @@
 
 var User = require('./models/user');
 var Book = require('./models/book');
+var Series = require('./models/series')
 var bodyParser = require('body-parser');
 var config = require('./config');
 var unirest = require('unirest');
@@ -245,8 +246,45 @@ app.get('/get-favorites/:username', function (req, res) {
         });
 });
 
+// POST: creating a new series
+// local API endpoint in server.js
+app.post('/series/create/:series', function (req, res) {
+    // step b5: send the local data to the database
+    Series.create({
+        //        bookTitle: req.body.bookTitle,
+        //        bookAuthor: req.body.bookAuthor,
+        //        bookThumbnail: req.body.bookThumbnail,
+        //        bookUser: req.body.bookUser,
+        bookSeries: req.params.series
+    }, function (err, lead) {
+        // step b6: return the result of DB call
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        // step b7: send the result back to client.js
+        res.status(201).json(lead);
 
-// PUT: updating a lead
+    });
+});
+
+// GET: get series list
+app.get('/get-series', function (req, res) {
+    Series.find({
+
+        },
+        function (err, item) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Internal Server Error'
+                });
+            }
+            res.status(200).json(item);
+        });
+});
+
+// PUT: update a book entry with series
 app.put('/leads/:id', function (req, res) {
     var toUpdate = {};
     var updateableFields = ['position', 'company', 'funnelStage', 'companyOverview', 'companySize', 'positionLocation', 'salaryBenefits', 'jobDescription', 'applicationDate', 'contactName', 'contactEmail', 'applicationMaterials', 'interviewDate', 'interviewFollowUp', 'leadSource', 'notes', 'rating'];

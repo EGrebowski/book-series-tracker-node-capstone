@@ -2,6 +2,7 @@
 // logged in username global variable
 var username = "";
 var searchTerm = "";
+//var seriesList = "";
 
 
 // Return to landing page
@@ -243,7 +244,12 @@ function displayBooks(books) {
         $.each(books.items, function (index, value) {
             console.log(value.volumeInfo);
             buildTheHtmlOutput += '<div class="book-entry">';
-            buildTheHtmlOutput += '<img src="' + value.volumeInfo.imageLinks.thumbnail + '">';
+            if (value.volumeInfo.imageLinks == undefined) {
+                buildTheHtmlOutput += '<img src="images/no-image.gif">';
+            } else {
+                buildTheHtmlOutput += '<img src="' + value.volumeInfo.imageLinks.thumbnail + '">';
+            }
+
             buildTheHtmlOutput += '<div class="book-info">';
             buildTheHtmlOutput += '<p class="book-title">' + value.volumeInfo.title + '</p>';
             buildTheHtmlOutput += '<p class="author">' + value.volumeInfo.authors + '</p>';
@@ -251,7 +257,11 @@ function displayBooks(books) {
             buildTheHtmlOutput += '<form class="add-to-favorites">';
             buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-title" value="' + value.volumeInfo.title + '">';
             buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-author" value="' + value.volumeInfo.authors + '">';
-            buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-thumbnail" value="' + value.volumeInfo.imageLinks.thumbnail + '">';
+            if (value.volumeInfo.imageLinks == undefined) {
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-thumbnail" value="images/no-image.gif">';
+            } else {
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-thumbnail" value="' + value.volumeInfo.imageLinks.thumbnail + '">';
+            }
             buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-user" value="' + username + '">';
             buildTheHtmlOutput += '<button class="add" type="submit">Add to My Profile</button>';
             buildTheHtmlOutput += '</form>';
@@ -270,7 +280,6 @@ $('.remove').on("click", function (event) {
 
 // show/hide books in series
 $('.series-author, .series-name').on("click", this, function (event) {
-    console.log("test");
     //    $(this).nextAll('.books-in-series').toggleClass("hidden")
     $(this).nextAll('.series-wrapper').toggle();
 });
@@ -342,7 +351,6 @@ function displayFavoritesContainer(books) {
         var htmlOutput = "Sorry, no books!";
     } else {
         $.each(books, function (index, value) {
-            console.log(value.volumeInfo);
             buildTheHtmlOutput += '<div class="book-entry col-4">';
             buildTheHtmlOutput += '<div class="image-background">';
             buildTheHtmlOutput += '<img src="' + value.bookThumbnail + '">';
@@ -354,20 +362,85 @@ function displayFavoritesContainer(books) {
             buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-author" value="' + value.bookAuthor + '">';
             buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-thumbnail" value="' + value.bookThumbnail + '">';
             buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-user" value="' + username + '">';
-            buildTheHtmlOutput += '<select name="series-input" class="add-to-series-name" id="series-input" placeholder="select series">';
-            buildTheHtmlOutput += '<option value="" disabled selected>Select a Series</option>';
-            buildTheHtmlOutput += '<option value="Harry Potter">Harry Potter</option>';
-            buildTheHtmlOutput += '<option value="World of Harry Potter">World of Harry Potter</option>';
+            buildTheHtmlOutput += '<select name="series-input" class="add-to-series-name" placeholder="select series">';
             buildTheHtmlOutput += '</select>';
             buildTheHtmlOutput += '<button type="submit">Assign</button>';
             buildTheHtmlOutput += '</form>';
             buildTheHtmlOutput += '</div>';
         });
+        populateSeriesDropdown();
         //use the HTML output to show it in the index.html
         $(".loose-books").html(buildTheHtmlOutput);
     }
 }
 
+
+// populate the series dropdown
+$("#create-series").on("submit", function (event) {
+    event.preventDefault();
+    var bookSeries = $("#series-input").val();
+    // check for valid input
+    if (bookSeries.length < 1) {
+        alert('Please enter a series name');
+    }
+    // if series is valid
+    else {
+        $.ajax({
+                type: "POST",
+                url: "/series/create/" + bookSeries,
+                dataType: 'json',
+                contentType: 'application/json'
+            })
+            // if API call is successful
+            .done(function (result) {
+                // display series in dropdown
+                console.log(result);
+                populateSeriesDropdown();
+            })
+            // if API call unsuccessful
+            .fail(function (jqXHR, error, errorThrown) {
+                // return errors
+                console.log(jqXHR);
+                console.log(error);
+                console.log(errorThrown);
+                alert('Something went wrong');
+            });
+    }
+});
+
+function populateSeriesDropdown() {
+    $.ajax({
+            type: "GET",
+            url: "/get-series/",
+            dataType: 'json',
+            contentType: 'application/json'
+        })
+        // if API call is successful
+        .done(function (result) {
+            // display search results
+            console.log(result);
+            displayDropdown(result);
+            //        $('.dashboard').hide();
+            //        $('.search-results').show();
+        })
+        // if API call unsuccessful
+        .fail(function (jqXHR, error, errorThrown) {
+            // return errors
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            alert('Something went wrong');
+        });
+}
+
+function displayDropdown(series) {
+    var buildTheHtmlOutput = '<option value="" disabled selected>Select a Series</option>';
+    $.each(series, function (index, value) {
+        buildTheHtmlOutput += '<option value="' + value.bookSeries + '">' + value.bookSeries + '</option>';
+    });
+    //use the HTML output to show it in the index.html
+    $(".add-to-series-name").html(buildTheHtmlOutput);
+}
 
 $(document).ready(function (event) {
     $(".dashboard").hide();
