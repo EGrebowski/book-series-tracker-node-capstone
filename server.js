@@ -285,17 +285,18 @@ app.get('/get-series', function (req, res) {
 });
 
 // PUT: update a book entry with series
-app.put('/leads/:id', function (req, res) {
+app.put('/get-favorites/:id', function (req, res) {
     var toUpdate = {};
-    var updateableFields = ['position', 'company', 'funnelStage', 'companyOverview', 'companySize', 'positionLocation', 'salaryBenefits', 'jobDescription', 'applicationDate', 'contactName', 'contactEmail', 'applicationMaterials', 'interviewDate', 'interviewFollowUp', 'leadSource', 'notes', 'rating'];
+    var updateableFields = ['bookSeries'];
     updateableFields.forEach(function (field) {
         if (field in req.body) {
             toUpdate[field] = req.body[field];
+            console.log(field);
         }
     });
-    Lead.findByIdAndUpdate(req.params.id, {
+    Book.findByIdAndUpdate(req.params.id, {
         $set: toUpdate
-    }).exec().then(function (lead) {
+    }).exec().then(function (Book) {
         return res.status(204).end();
     }).catch(function (err) {
         return res.status(500).json({

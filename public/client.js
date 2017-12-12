@@ -64,6 +64,9 @@ $("#login-btn").on("click", function (event) {
                 username = result.username;
                 $('.header').hide();
                 $('.dashboard').show();
+                populateFavoritesContainer(username);
+                //            sortBooksBySeries();
+
             })
             // if API call unsuccessful
             .fail(function (jqXHR, error, errorThrown) {
@@ -358,13 +361,14 @@ function displayFavoritesContainer(books) {
             buildTheHtmlOutput += '<p class="book-title">' + value.bookTitle + '</p>';
             buildTheHtmlOutput += '<p class="author">' + value.bookAuthor + '</p>';
             buildTheHtmlOutput += '<form action="#" name="series-finder" class="series-finder">';
+            buildTheHtmlOutput += '<input type="hidden" class="formID" value="' + value._id + '">';
             buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-title" value="' + value.bookTitle + '">';
             buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-author" value="' + value.bookAuthor + '">';
             buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-thumbnail" value="' + value.bookThumbnail + '">';
             buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-user" value="' + username + '">';
             buildTheHtmlOutput += '<select name="series-input" class="add-to-series-name" placeholder="select series">';
             buildTheHtmlOutput += '</select>';
-            buildTheHtmlOutput += '<button type="submit">Assign</button>';
+            buildTheHtmlOutput += '<button class="assign-series" type="submit">Assign</button>';
             buildTheHtmlOutput += '</form>';
             buildTheHtmlOutput += '</div>';
         });
@@ -441,6 +445,87 @@ function displayDropdown(series) {
     //use the HTML output to show it in the index.html
     $(".add-to-series-name").html(buildTheHtmlOutput);
 }
+
+// classify books by series
+$(document).on('submit', '.series-finder', function (event) {
+    event.preventDefault();
+    //        var bookTitle = $(this).parent().find('.add-to-favorites-book-title').val();
+    //        var bookAuthor = $(this).parent().find('.add-to-favorites-book-author').val();
+    //        var bookThumbnail = $(this).parent().find('.add-to-favorites-book-thumbnail').val();
+    //        var bookUser = $(this).parent().find('.add-to-favorites-book-user').val();
+    var bookSeries = $(this).parent().find('.add-to-series-name').val();
+    //    var idFromButton = $('.book-entry').attr('id');
+    let idParameter = $(this).parent().find('.formID').val();
+
+    var updatedObject = {
+        'bookSeries': bookSeries
+    };
+    console.log(updatedObject);
+    $.ajax({
+            method: 'PUT',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(updatedObject),
+            url: "/get-favorites/" + idParameter
+            //            url: '/book/:id'
+        })
+        .done(function (result) {
+            //            populateFavoritesContainer(username);
+            //            populateBeenThereContainer();
+            //            sweetAlert('Success!', 'Go explore!', 'success');
+
+        });
+});
+
+function displayBooksBySeries() {
+
+}
+
+function sortBooksBySeries(username) {
+    $.ajax({
+            type: "GET",
+            url: "/get-favorites/" + username,
+            dataType: 'json',
+            contentType: 'application/json'
+        })
+        // if API call is successful
+        .done(function (result) {
+                // display search results
+                // displayFavoritesContainer(result);
+                if (result.bookSeries !== undefined) {
+                    console.log("It worked!");
+                } else {
+                    var buildTheHtmlOutput = '';
+                    if (idParameter !== undefined) {
+                        $.each(books, function (index, value) {
+                            buildTheHtmlOutput += '<div class="series">';
+                            buildTheHtmlOutput += '<p class="series-author">' + value.bookAuthor + '</p>';
+                            buildTheHtmlOutput += '<p class="series-name">' + value.bookSeries + '</p><br/>';
+                            buildTheHtmlOutput += '<div class="series-wrapper">';
+                            buildTheHtmlOutput += '<div class="placeholder col-1">w</div>';
+
+                        })
+                    }
+                })
+            // if API call unsuccessful
+            .fail(function (jqXHR, error, errorThrown) {
+                // return errors
+                console.log(jqXHR);
+                console.log(error);
+                console.log(errorThrown);
+                alert('Something went wrong');
+            });
+            //    $(this).parent().html(buildTheHtmlOutput);
+
+        }
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            //            sweetAlert('Oops...', 'Please try again', 'error');
+        });
+}
+
 
 $(document).ready(function (event) {
     $(".dashboard").hide();
