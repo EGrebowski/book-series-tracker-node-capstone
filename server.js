@@ -231,6 +231,8 @@ app.post('/add-to-favorites', function (req, res) {
     });
 });
 
+
+
 app.get('/get-favorites/:username', function (req, res) {
     Book.find({
             bookUser: req.params.username
@@ -242,6 +244,7 @@ app.get('/get-favorites/:username', function (req, res) {
                     message: 'Internal Server Error'
                 });
             }
+
             res.status(200).json(item);
         });
 });

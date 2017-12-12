@@ -4,6 +4,13 @@ var username = "";
 var searchTerm = "";
 //var seriesList = "";
 
+function sortByKey(array, key) {
+    return array.sort(function (a, b) {
+        var x = a[key];
+        var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+}
 
 // Return to landing page
 $("nav h3").on("click", function (event) {
@@ -261,6 +268,7 @@ function displayBooks(books) {
             buildTheHtmlOutput += '<form class="add-to-favorites">';
             buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-title" value="' + value.volumeInfo.title + '">';
             buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-author" value="' + value.volumeInfo.authors + '">';
+            buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-publish-date" value="' + value.volumeInfo.publishedDate + '">';
             if (value.volumeInfo.imageLinks == undefined) {
                 buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-thumbnail" value="images/no-image.gif">';
             } else {
@@ -300,7 +308,8 @@ $(document).on('submit', '.add-to-favorites', function (event) {
         'bookAuthor': bookAuthor,
         'bookThumbnail': bookThumbnail,
         'bookUser': bookUser,
-        'bookSeries': ""
+        'bookSeries': "",
+        'bookPublished':
     };
 
     $.ajax({
@@ -358,29 +367,32 @@ function displayFavoritesContainer(books) {
         var htmlOutput = "Sorry, no books!";
     } else {
         $.each(books, function (index, value) {
-            buildTheHtmlOutput += '<div class="book-entry col-4">';
-            buildTheHtmlOutput += '<div class="image-background">';
-            buildTheHtmlOutput += '<img src="' + value.bookThumbnail + '">';
-            buildTheHtmlOutput += '</div>';
-            buildTheHtmlOutput += '<p class="book-title">' + value.bookTitle + '</p>';
-            buildTheHtmlOutput += '<p class="author">' + value.bookAuthor + '</p>';
-            buildTheHtmlOutput += '<form action="#" name="series-finder" class="series-finder">';
-            buildTheHtmlOutput += '<input type="hidden" class="formID" value="' + value._id + '">';
-            buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-title" value="' + value.bookTitle + '">';
-            buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-author" value="' + value.bookAuthor + '">';
-            buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-thumbnail" value="' + value.bookThumbnail + '">';
-            buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-user" value="' + username + '">';
-            buildTheHtmlOutput += '<select name="series-input" class="add-to-series-name" placeholder="select series">';
-            buildTheHtmlOutput += '</select>';
-            buildTheHtmlOutput += '<button class="assign-series" type="submit">Assign</button>';
-            buildTheHtmlOutput += '</form>';
-            buildTheHtmlOutput += '</div>';
+            if (value.bookSeries == "") {
+                buildTheHtmlOutput += '<div class="book-entry col-4">';
+                buildTheHtmlOutput += '<div class="image-background">';
+                buildTheHtmlOutput += '<img src="' + value.bookThumbnail + '">';
+                buildTheHtmlOutput += '</div>';
+                buildTheHtmlOutput += '<p class="book-title">' + value.bookTitle + '</p>';
+                buildTheHtmlOutput += '<p class="author">' + value.bookAuthor + '</p>';
+                buildTheHtmlOutput += '<form action="#" name="series-finder" class="series-finder">';
+                buildTheHtmlOutput += '<input type="hidden" class="formID" value="' + value._id + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-title" value="' + value.bookTitle + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-author" value="' + value.bookAuthor + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-thumbnail" value="' + value.bookThumbnail + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-user" value="' + username + '">';
+                buildTheHtmlOutput += '<select name="series-input" class="add-to-series-name" placeholder="select series">';
+                buildTheHtmlOutput += '</select>';
+                buildTheHtmlOutput += '<button class="assign-series" type="submit">Assign</button>';
+                buildTheHtmlOutput += '</form>';
+                buildTheHtmlOutput += '</div>';
+            }
         });
         populateSeriesDropdown();
         //use the HTML output to show it in the index.html
         $(".loose-books").html(buildTheHtmlOutput);
     }
 }
+
 
 function populateSeriesContainer(username) {
     console.log("populateSeriesContainer ran");
@@ -409,11 +421,23 @@ function populateSeriesContainer(username) {
 function displayBooksBySeries(books) {
     var buildTheHtmlOutput = '';
     console.log("displayBooksBySeries ran");
-    if (book.bookSeries !== undefined) {
-        $.each(books, function (index, value) {
+    console.log(books);
+    console.log(books.bookSeries);
+    let output = sortByKey(books, 'bookSeries');
+    console.log(output);
+    let currentSeries = "";
+    let oldSeries = "";
+    $.each(output, function (index, value) {
+        if (value.bookSeries != "") {
+            currentSeries = value.bookSeries;
             buildTheHtmlOutput += '<div class="series">';
-            buildTheHtmlOutput += '<p class="series-author">' + value.bookAuthor + '</p>';
-            buildTheHtmlOutput += '<p class="series-name">' + value.bookSeries + '</p><br/>';
+            if (currentSeries != oldSeries) {
+                buildTheHtmlOutput += '<div class="series-title">';
+                buildTheHtmlOutput += value.bookSeries + ', ' + value.bookAuthor;
+                buildTheHtmlOutput += '</div>';
+            }
+            //            buildTheHtmlOutput += '<p class="series-author">' + value.bookAuthor + '</p>';
+            //            buildTheHtmlOutput += '<p class="series-name">' + value.bookSeries + '</p><br/>';
             buildTheHtmlOutput += '<div class="series-wrapper">';
             buildTheHtmlOutput += '<div class="placeholder col-1">w</div>';
             buildTheHtmlOutput += '<div class="books-in-series col-11">';
@@ -427,10 +451,14 @@ function displayBooksBySeries(books) {
             buildTheHtmlOutput += '</div>';
             buildTheHtmlOutput += '</div>';
             buildTheHtmlOutput += '</div>';
-        });
-        $('.books-by-series').html(buildTheHtmlOutput);
-    }
+            oldSeries = currentSeries;
+        }
+
+    });
+    $('.books-by-series').html(buildTheHtmlOutput);
 }
+
+
 
 // populate the series dropdown
 $("#create-series").on("submit", function (event) {
@@ -509,7 +537,6 @@ $(document).on('submit', '.series-finder', function (event) {
     var bookSeries = $(this).parent().find('.add-to-series-name').val();
     //    var idFromButton = $('.book-entry').attr('id');
     let idParameter = $(this).parent().find('.formID').val();
-
     var updatedObject = {
         'bookSeries': bookSeries
     };
@@ -530,10 +557,6 @@ $(document).on('submit', '.series-finder', function (event) {
         });
 });
 
-function displayBooksBySeries() {
-
-}
-
 
 
 $(document).ready(function (event) {
@@ -545,6 +568,3 @@ $(document).ready(function (event) {
     //    $('.books-in-series').hide();
     $(".series-wrapper").hide();
 });
-
-
-// should I hide new releases that are removed or added, or should I prevent from populating with API call?
