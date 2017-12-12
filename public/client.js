@@ -65,6 +65,7 @@ $("#login-btn").on("click", function (event) {
                 $('.header').hide();
                 $('.dashboard').show();
                 populateFavoritesContainer(username);
+                populateSeriesContainer(username);
                 //            sortBooksBySeries();
 
             })
@@ -311,6 +312,7 @@ $(document).on('submit', '.add-to-favorites', function (event) {
         })
         .done(function (result) {
             populateFavoritesContainer(username);
+
             //            populateBeenThereContainer();
             //            sweetAlert('Success!', 'Go explore!', 'success');
             console.log(result);
@@ -324,6 +326,7 @@ $(document).on('submit', '.add-to-favorites', function (event) {
 });
 
 function populateFavoritesContainer(username) {
+    console.log("populateFavoritesContainer ran");
     $.ajax({
             type: "GET",
             url: "/get-favorites/" + username,
@@ -335,6 +338,7 @@ function populateFavoritesContainer(username) {
             // display search results
             console.log(result);
             displayFavoritesContainer(result);
+            //            displayBooksBySeries(result);
             //        $('.dashboard').hide();
             //        $('.search-results').show();
         })
@@ -378,6 +382,55 @@ function displayFavoritesContainer(books) {
     }
 }
 
+function populateSeriesContainer(username) {
+    console.log("populateSeriesContainer ran");
+    $.ajax({
+            type: "GET",
+            url: "/get-favorites/" + username,
+            dataType: 'json',
+            contentType: 'application/json'
+        })
+        // if API call is successful
+        .done(function (result) {
+            // display search results
+            console.log(result);
+            displayBooksBySeries(result);
+        })
+        // if API call unsuccessful
+        .fail(function (jqXHR, error, errorThrown) {
+            // return errors
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            alert('Something went wrong');
+        });
+}
+
+function displayBooksBySeries(books) {
+    var buildTheHtmlOutput = '';
+    console.log("displayBooksBySeries ran");
+    if (book.bookSeries !== undefined) {
+        $.each(books, function (index, value) {
+            buildTheHtmlOutput += '<div class="series">';
+            buildTheHtmlOutput += '<p class="series-author">' + value.bookAuthor + '</p>';
+            buildTheHtmlOutput += '<p class="series-name">' + value.bookSeries + '</p><br/>';
+            buildTheHtmlOutput += '<div class="series-wrapper">';
+            buildTheHtmlOutput += '<div class="placeholder col-1">w</div>';
+            buildTheHtmlOutput += '<div class="books-in-series col-11">';
+            buildTheHtmlOutput += '<div class="book-entry">';
+            buildTheHtmlOutput += '<div class="image-background">';
+            buildTheHtmlOutput += '<img src="' + value.bookThumbnail + '" />';
+            buildTheHtmlOutput += '</div>';
+            buildTheHtmlOutput += '<p class="book-title">' + value.bookTitle + '</p>';
+            buildTheHtmlOutput += '<p class="author">' + value.bookAuthor + '</p>';
+            buildTheHtmlOutput += '</div>';
+            buildTheHtmlOutput += '</div>';
+            buildTheHtmlOutput += '</div>';
+            buildTheHtmlOutput += '</div>';
+        });
+        $('.books-by-series').html(buildTheHtmlOutput);
+    }
+}
 
 // populate the series dropdown
 $("#create-series").on("submit", function (event) {
@@ -481,50 +534,6 @@ function displayBooksBySeries() {
 
 }
 
-function sortBooksBySeries(username) {
-    $.ajax({
-            type: "GET",
-            url: "/get-favorites/" + username,
-            dataType: 'json',
-            contentType: 'application/json'
-        })
-        // if API call is successful
-        .done(function (result) {
-                // display search results
-                // displayFavoritesContainer(result);
-                if (result.bookSeries !== undefined) {
-                    console.log("It worked!");
-                } else {
-                    var buildTheHtmlOutput = '';
-                    if (idParameter !== undefined) {
-                        $.each(books, function (index, value) {
-                            buildTheHtmlOutput += '<div class="series">';
-                            buildTheHtmlOutput += '<p class="series-author">' + value.bookAuthor + '</p>';
-                            buildTheHtmlOutput += '<p class="series-name">' + value.bookSeries + '</p><br/>';
-                            buildTheHtmlOutput += '<div class="series-wrapper">';
-                            buildTheHtmlOutput += '<div class="placeholder col-1">w</div>';
-
-                        })
-                    }
-                })
-            // if API call unsuccessful
-            .fail(function (jqXHR, error, errorThrown) {
-                // return errors
-                console.log(jqXHR);
-                console.log(error);
-                console.log(errorThrown);
-                alert('Something went wrong');
-            });
-            //    $(this).parent().html(buildTheHtmlOutput);
-
-        }
-        .fail(function (jqXHR, error, errorThrown) {
-            console.log(jqXHR);
-            console.log(error);
-            console.log(errorThrown);
-            //            sweetAlert('Oops...', 'Please try again', 'error');
-        });
-}
 
 
 $(document).ready(function (event) {
