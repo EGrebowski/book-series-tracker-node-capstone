@@ -444,8 +444,34 @@ h4 {
     width: 100%;
 }
 
+.loose-books .book-entry {
+    position: relative;
+}
+
 #other-books {
     margin-top: 30px;
+}
+
+.delete-book {
+    float: right;
+    width: 30px;
+    position: absolute;
+    border: 1px solid red;
+    text-align: center;
+    right: 0;
+    top: 0;
+}
+
+.delete-series {
+    width: 100%;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.delete-series i {
+    width: 20px;
+    height: 20px;
+
 }
 
 select {

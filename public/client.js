@@ -12,6 +12,210 @@ function sortByKey(array, key) {
     });
 }
 
+// display book entry
+function displayBooks(books) {
+    var buildTheHtmlOutput = '';
+    if (books.items == undefined) {
+        var htmlOutput = "Sorry, no books!";
+    } else {
+        $.each(books.items, function (index, value) {
+            console.log(value.volumeInfo);
+            buildTheHtmlOutput += '<div class="book-entry">';
+            if (value.volumeInfo.imageLinks == undefined) {
+                buildTheHtmlOutput += '<img src="images/no-image.gif">';
+            } else {
+                buildTheHtmlOutput += '<img src="' + value.volumeInfo.imageLinks.thumbnail + '">';
+            }
+
+            buildTheHtmlOutput += '<div class="book-info">';
+            buildTheHtmlOutput += '<p class="book-title">' + value.volumeInfo.title + '</p>';
+            buildTheHtmlOutput += '<p class="author">' + value.volumeInfo.authors + '</p>';
+            buildTheHtmlOutput += '<p class="book-blurb">"The Eighth Story. Nineteen Years Later. Based on an original new story by J.K. Rowling, John Tiffany and Jack Thorne. It was always difficult being Harry Potter and it isn\'t much easier now that he is an overworked employee of the Ministry of Magic, a husband, and father of three school - age children.While Harry grapples with a past that refuses to stay where it belongs, his youngest son Albus must struggle with the weight of a family legacy he never wanted.As past and present fuse ominously, both father and son learn the uncomfortable truth: sometimes, more < /p>';
+            buildTheHtmlOutput += '<form class="add-to-favorites">';
+            buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-title" value="' + value.volumeInfo.title + '">';
+            buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-subtitle" value="' + value.volumeInfo.subtitle + '">';
+            buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-author" value="' + value.volumeInfo.authors + '">';
+            buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-publish-date" value="' + value.volumeInfo.publishedDate + '">';
+            if (value.volumeInfo.imageLinks == undefined) {
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-thumbnail" value="images/no-image.gif">';
+            } else {
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-thumbnail" value="' + value.volumeInfo.imageLinks.thumbnail + '">';
+            }
+            buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-user" value="' + username + '">';
+            buildTheHtmlOutput += '<button class="add" type="submit">Add to My Profile</button>';
+            buildTheHtmlOutput += '</form>';
+            buildTheHtmlOutput += '</div>';
+            buildTheHtmlOutput += '</div>';
+        });
+        //use the HTML output to show it in the index.html
+        $(".results").html(buildTheHtmlOutput);
+    }
+}
+
+function populateFavoritesContainer(username) {
+    console.log("populateFavoritesContainer ran");
+    $.ajax({
+            type: "GET",
+            url: "/get-favorites/" + username,
+            dataType: 'json',
+            contentType: 'application/json'
+        })
+        // if API call is successful
+        .done(function (result) {
+            // display search results
+            console.log(result);
+            displayFavoritesContainer(result);
+            //            displayBooksBySeries(result);
+            //        $('.dashboard').hide();
+            //        $('.search-results').show();
+        })
+        // if API call unsuccessful
+        .fail(function (jqXHR, error, errorThrown) {
+            // return errors
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            alert('Something went wrong');
+        });
+}
+
+function displayFavoritesContainer(books) {
+    var buildTheHtmlOutput = '';
+    if (books.length == 0) {
+        var htmlOutput = "Sorry, no books!";
+    } else {
+        $.each(books, function (index, value) {
+            if (value.bookSeries == "") {
+                buildTheHtmlOutput += '<div class="book-entry col-4">';
+                buildTheHtmlOutput += '<form action="#" name="delete-book" class="delete-book">';
+                buildTheHtmlOutput += '<input type="hidden" class="formID" value="' + value._id + '">';
+                buildTheHtmlOutput += '<button class="delete-series" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>';
+                buildTheHtmlOutput += '</form>';
+                buildTheHtmlOutput += '<div class="image-background">';
+                buildTheHtmlOutput += '<img src="' + value.bookThumbnail + '">';
+                buildTheHtmlOutput += '</div>';
+                buildTheHtmlOutput += '<p class="book-title">' + value.bookTitle + '</p>';
+                buildTheHtmlOutput += '<p class="author">' + value.bookAuthor + '</p>';
+                buildTheHtmlOutput += '<form action="#" name="series-finder" class="series-finder">';
+                buildTheHtmlOutput += '<input type="hidden" class="formID" value="' + value._id + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-title" value="' + value.bookTitle + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-subtitle" value="' + value.bookTitle + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-author" value="' + value.bookAuthor + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-thumbnail" value="' + value.bookThumbnail + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-user" value="' + username + '">';
+                buildTheHtmlOutput += '<select name="series-input" class="add-to-series-name" placeholder="select series">';
+                buildTheHtmlOutput += '</select>';
+                buildTheHtmlOutput += '<button class="assign-series" type="submit">Assign</button>';
+                buildTheHtmlOutput += '</form>';
+                buildTheHtmlOutput += '</div>';
+            }
+        });
+        populateSeriesDropdown();
+        //use the HTML output to show it in the index.html
+        $(".loose-books").html(buildTheHtmlOutput);
+    }
+}
+
+
+function populateSeriesContainer(username) {
+    console.log("populateSeriesContainer ran");
+    $.ajax({
+            type: "GET",
+            url: "/get-favorites/" + username,
+            dataType: 'json',
+            contentType: 'application/json'
+        })
+        // if API call is successful
+        .done(function (result) {
+            // display search results
+            console.log(result);
+            displayBooksBySeries(result);
+        })
+        // if API call unsuccessful
+        .fail(function (jqXHR, error, errorThrown) {
+            // return errors
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            alert('Something went wrong');
+        });
+}
+
+function displayBooksBySeries(books) {
+    var buildTheHtmlOutput = '';
+    console.log("displayBooksBySeries ran");
+    console.log(books);
+    console.log(books.bookSeries);
+    let output = sortByKey(books, 'bookSeries');
+    console.log(output);
+    let currentSeries = "";
+    let oldSeries = "";
+    $.each(output, function (index, value) {
+        if (value.bookSeries != "") {
+            currentSeries = value.bookSeries;
+            buildTheHtmlOutput += '<div class="series">';
+            if (currentSeries != oldSeries) {
+                buildTheHtmlOutput += '<div class="series-title">';
+                buildTheHtmlOutput += value.bookSeries + ', ' + value.bookAuthor;
+                buildTheHtmlOutput += '</div>';
+            }
+            //            buildTheHtmlOutput += '<p class="series-author">' + value.bookAuthor + '</p>';
+            //            buildTheHtmlOutput += '<p class="series-name">' + value.bookSeries + '</p><br/>';
+            buildTheHtmlOutput += '<div class="series-wrapper">';
+            buildTheHtmlOutput += '<div class="placeholder col-1">w</div>';
+            buildTheHtmlOutput += '<div class="books-in-series col-11">';
+            buildTheHtmlOutput += '<div class="book-entry">';
+            buildTheHtmlOutput += '<div class="image-background">';
+            buildTheHtmlOutput += '<img src="' + value.bookThumbnail + '" />';
+            buildTheHtmlOutput += '</div>';
+            buildTheHtmlOutput += '<p class="book-title">' + value.bookTitle + '</p>';
+            buildTheHtmlOutput += '<p class="author">' + value.bookAuthor + '</p>';
+            buildTheHtmlOutput += '</div>';
+            buildTheHtmlOutput += '</div>';
+            buildTheHtmlOutput += '</div>';
+            buildTheHtmlOutput += '</div>';
+            oldSeries = currentSeries;
+        }
+
+    });
+    $('.books-by-series').html(buildTheHtmlOutput);
+}
+
+function populateSeriesDropdown() {
+    $.ajax({
+            type: "GET",
+            url: "/get-series/",
+            dataType: 'json',
+            contentType: 'application/json'
+        })
+        // if API call is successful
+        .done(function (result) {
+            // display search results
+            console.log(result);
+            displayDropdown(result);
+            //        $('.dashboard').hide();
+            //        $('.search-results').show();
+        })
+        // if API call unsuccessful
+        .fail(function (jqXHR, error, errorThrown) {
+            // return errors
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            alert('Something went wrong');
+        });
+}
+
+function displayDropdown(series) {
+    var buildTheHtmlOutput = '<option value="" disabled selected>Select a Series</option>';
+    $.each(series, function (index, value) {
+        buildTheHtmlOutput += '<option value="' + value.bookSeries + '">' + value.bookSeries + '</option>';
+    });
+    //use the HTML output to show it in the index.html
+    $(".add-to-series-name").html(buildTheHtmlOutput);
+}
+
+
 // Return to landing page
 $("nav h3").on("click", function (event) {
     $(".header").show();
@@ -246,44 +450,6 @@ $("#dashboard-author-search").on("submit", function (event) {
     }
 });
 
-// display book entry
-function displayBooks(books) {
-    var buildTheHtmlOutput = '';
-    if (books.items == undefined) {
-        var htmlOutput = "Sorry, no books!";
-    } else {
-        $.each(books.items, function (index, value) {
-            console.log(value.volumeInfo);
-            buildTheHtmlOutput += '<div class="book-entry">';
-            if (value.volumeInfo.imageLinks == undefined) {
-                buildTheHtmlOutput += '<img src="images/no-image.gif">';
-            } else {
-                buildTheHtmlOutput += '<img src="' + value.volumeInfo.imageLinks.thumbnail + '">';
-            }
-
-            buildTheHtmlOutput += '<div class="book-info">';
-            buildTheHtmlOutput += '<p class="book-title">' + value.volumeInfo.title + '</p>';
-            buildTheHtmlOutput += '<p class="author">' + value.volumeInfo.authors + '</p>';
-            buildTheHtmlOutput += '<p class="book-blurb">"The Eighth Story. Nineteen Years Later. Based on an original new story by J.K. Rowling, John Tiffany and Jack Thorne. It was always difficult being Harry Potter and it isn\'t much easier now that he is an overworked employee of the Ministry of Magic, a husband, and father of three school - age children.While Harry grapples with a past that refuses to stay where it belongs, his youngest son Albus must struggle with the weight of a family legacy he never wanted.As past and present fuse ominously, both father and son learn the uncomfortable truth: sometimes, more < /p>';
-            buildTheHtmlOutput += '<form class="add-to-favorites">';
-            buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-title" value="' + value.volumeInfo.title + '">';
-            buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-author" value="' + value.volumeInfo.authors + '">';
-            buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-publish-date" value="' + value.volumeInfo.publishedDate + '">';
-            if (value.volumeInfo.imageLinks == undefined) {
-                buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-thumbnail" value="images/no-image.gif">';
-            } else {
-                buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-thumbnail" value="' + value.volumeInfo.imageLinks.thumbnail + '">';
-            }
-            buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-user" value="' + username + '">';
-            buildTheHtmlOutput += '<button class="add" type="submit">Add to My Profile</button>';
-            buildTheHtmlOutput += '</form>';
-            buildTheHtmlOutput += '</div>';
-            buildTheHtmlOutput += '</div>';
-        });
-        //use the HTML output to show it in the index.html
-        $(".results").html(buildTheHtmlOutput);
-    }
-}
 
 // remove book entry from new releases
 $('.remove').on("click", function (event) {
@@ -299,18 +465,22 @@ $('.series-author, .series-name').on("click", this, function (event) {
 $(document).on('submit', '.add-to-favorites', function (event) {
     event.preventDefault();
     var bookTitle = $(this).parent().find('.add-to-favorites-book-title').val();
+    var bookSubtitle = $(this).parent().find('.add-to-favorites-book-subtitle').val();
     var bookAuthor = $(this).parent().find('.add-to-favorites-book-author').val();
     var bookThumbnail = $(this).parent().find('.add-to-favorites-book-thumbnail').val();
     var bookUser = $(this).parent().find('.add-to-favorites-book-user').val();
+    var bookPublished = $(this).parent().find('.add-to-favorites-publish-date').val();
 
     var bookObject = {
         'bookTitle': bookTitle,
+        'bookSubtitle': bookSubtitle,
         'bookAuthor': bookAuthor,
         'bookThumbnail': bookThumbnail,
         'bookUser': bookUser,
-        'bookSeries': "",
-        'bookPublished':
+        'bookPublished': bookPublished,
+        'bookSeries': ""
     };
+    console.log(bookObject);
 
     $.ajax({
             method: 'POST',
@@ -333,130 +503,6 @@ $(document).on('submit', '.add-to-favorites', function (event) {
             sweetAlert('Oops...', 'Please try again', 'error');
         });
 });
-
-function populateFavoritesContainer(username) {
-    console.log("populateFavoritesContainer ran");
-    $.ajax({
-            type: "GET",
-            url: "/get-favorites/" + username,
-            dataType: 'json',
-            contentType: 'application/json'
-        })
-        // if API call is successful
-        .done(function (result) {
-            // display search results
-            console.log(result);
-            displayFavoritesContainer(result);
-            //            displayBooksBySeries(result);
-            //        $('.dashboard').hide();
-            //        $('.search-results').show();
-        })
-        // if API call unsuccessful
-        .fail(function (jqXHR, error, errorThrown) {
-            // return errors
-            console.log(jqXHR);
-            console.log(error);
-            console.log(errorThrown);
-            alert('Something went wrong');
-        });
-}
-
-function displayFavoritesContainer(books) {
-    var buildTheHtmlOutput = '';
-    if (books.length == 0) {
-        var htmlOutput = "Sorry, no books!";
-    } else {
-        $.each(books, function (index, value) {
-            if (value.bookSeries == "") {
-                buildTheHtmlOutput += '<div class="book-entry col-4">';
-                buildTheHtmlOutput += '<div class="image-background">';
-                buildTheHtmlOutput += '<img src="' + value.bookThumbnail + '">';
-                buildTheHtmlOutput += '</div>';
-                buildTheHtmlOutput += '<p class="book-title">' + value.bookTitle + '</p>';
-                buildTheHtmlOutput += '<p class="author">' + value.bookAuthor + '</p>';
-                buildTheHtmlOutput += '<form action="#" name="series-finder" class="series-finder">';
-                buildTheHtmlOutput += '<input type="hidden" class="formID" value="' + value._id + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-title" value="' + value.bookTitle + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-author" value="' + value.bookAuthor + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-thumbnail" value="' + value.bookThumbnail + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="add-to-series-book-user" value="' + username + '">';
-                buildTheHtmlOutput += '<select name="series-input" class="add-to-series-name" placeholder="select series">';
-                buildTheHtmlOutput += '</select>';
-                buildTheHtmlOutput += '<button class="assign-series" type="submit">Assign</button>';
-                buildTheHtmlOutput += '</form>';
-                buildTheHtmlOutput += '</div>';
-            }
-        });
-        populateSeriesDropdown();
-        //use the HTML output to show it in the index.html
-        $(".loose-books").html(buildTheHtmlOutput);
-    }
-}
-
-
-function populateSeriesContainer(username) {
-    console.log("populateSeriesContainer ran");
-    $.ajax({
-            type: "GET",
-            url: "/get-favorites/" + username,
-            dataType: 'json',
-            contentType: 'application/json'
-        })
-        // if API call is successful
-        .done(function (result) {
-            // display search results
-            console.log(result);
-            displayBooksBySeries(result);
-        })
-        // if API call unsuccessful
-        .fail(function (jqXHR, error, errorThrown) {
-            // return errors
-            console.log(jqXHR);
-            console.log(error);
-            console.log(errorThrown);
-            alert('Something went wrong');
-        });
-}
-
-function displayBooksBySeries(books) {
-    var buildTheHtmlOutput = '';
-    console.log("displayBooksBySeries ran");
-    console.log(books);
-    console.log(books.bookSeries);
-    let output = sortByKey(books, 'bookSeries');
-    console.log(output);
-    let currentSeries = "";
-    let oldSeries = "";
-    $.each(output, function (index, value) {
-        if (value.bookSeries != "") {
-            currentSeries = value.bookSeries;
-            buildTheHtmlOutput += '<div class="series">';
-            if (currentSeries != oldSeries) {
-                buildTheHtmlOutput += '<div class="series-title">';
-                buildTheHtmlOutput += value.bookSeries + ', ' + value.bookAuthor;
-                buildTheHtmlOutput += '</div>';
-            }
-            //            buildTheHtmlOutput += '<p class="series-author">' + value.bookAuthor + '</p>';
-            //            buildTheHtmlOutput += '<p class="series-name">' + value.bookSeries + '</p><br/>';
-            buildTheHtmlOutput += '<div class="series-wrapper">';
-            buildTheHtmlOutput += '<div class="placeholder col-1">w</div>';
-            buildTheHtmlOutput += '<div class="books-in-series col-11">';
-            buildTheHtmlOutput += '<div class="book-entry">';
-            buildTheHtmlOutput += '<div class="image-background">';
-            buildTheHtmlOutput += '<img src="' + value.bookThumbnail + '" />';
-            buildTheHtmlOutput += '</div>';
-            buildTheHtmlOutput += '<p class="book-title">' + value.bookTitle + '</p>';
-            buildTheHtmlOutput += '<p class="author">' + value.bookAuthor + '</p>';
-            buildTheHtmlOutput += '</div>';
-            buildTheHtmlOutput += '</div>';
-            buildTheHtmlOutput += '</div>';
-            buildTheHtmlOutput += '</div>';
-            oldSeries = currentSeries;
-        }
-
-    });
-    $('.books-by-series').html(buildTheHtmlOutput);
-}
 
 
 
@@ -493,39 +539,7 @@ $("#create-series").on("submit", function (event) {
     }
 });
 
-function populateSeriesDropdown() {
-    $.ajax({
-            type: "GET",
-            url: "/get-series/",
-            dataType: 'json',
-            contentType: 'application/json'
-        })
-        // if API call is successful
-        .done(function (result) {
-            // display search results
-            console.log(result);
-            displayDropdown(result);
-            //        $('.dashboard').hide();
-            //        $('.search-results').show();
-        })
-        // if API call unsuccessful
-        .fail(function (jqXHR, error, errorThrown) {
-            // return errors
-            console.log(jqXHR);
-            console.log(error);
-            console.log(errorThrown);
-            alert('Something went wrong');
-        });
-}
 
-function displayDropdown(series) {
-    var buildTheHtmlOutput = '<option value="" disabled selected>Select a Series</option>';
-    $.each(series, function (index, value) {
-        buildTheHtmlOutput += '<option value="' + value.bookSeries + '">' + value.bookSeries + '</option>';
-    });
-    //use the HTML output to show it in the index.html
-    $(".add-to-series-name").html(buildTheHtmlOutput);
-}
 
 // classify books by series
 $(document).on('submit', '.series-finder', function (event) {
@@ -557,6 +571,37 @@ $(document).on('submit', '.series-finder', function (event) {
         });
 });
 
+// delete books
+$(document).on('submit', '.delete-book', function (event) {
+    event.preventDefault();
+    let idParameter = $(this).parent().find('.formID').val();
+    var updatedObject = {
+        'bookSeries': bookSeries
+    };
+    console.log(updatedObject);
+    $.ajax({
+            method: 'PUT',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(updatedObject),
+            url: "/get-favorites/" + idParameter
+            //            url: '/book/:id'
+        })
+        .done(function (result) {
+            //            populateFavoritesContainer(username);
+            //            populateBeenThereContainer();
+            //            sweetAlert('Success!', 'Go explore!', 'success');
+
+        });
+});
+
+// show new releases by authors in collection
+function searchForNewReleases(username) {
+    // GET favorites organized by author
+    // make API call for authors in favorites (search by author)
+    // display if publish date is within the last year
+    // user can hide book if not interested
+}
 
 
 $(document).ready(function (event) {

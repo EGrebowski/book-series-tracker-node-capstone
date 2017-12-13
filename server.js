@@ -214,9 +214,11 @@ app.post('/add-to-favorites', function (req, res) {
     // step b5: send the local data to the database
     Book.create({
         bookTitle: req.body.bookTitle,
+        bookSubtitle: req.body.bookSubtitle,
         bookAuthor: req.body.bookAuthor,
         bookThumbnail: req.body.bookThumbnail,
         bookUser: req.body.bookUser,
+        bookPublished: req.body.bookPublished,
         bookSeries: req.body.bookSeries
     }, function (err, lead) {
         // step b6: return the result of DB call
