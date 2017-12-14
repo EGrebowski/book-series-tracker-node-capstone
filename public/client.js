@@ -163,7 +163,7 @@ function displayBooksBySeries(books) {
             //            buildTheHtmlOutput += '<div class="series">';
             if (currentSeries != oldSeries) {
                 buildTheHtmlOutput += '<div class="series-title col-12">';
-                buildTheHtmlOutput += value.bookSeries + ', ' + value.bookAuthor;
+                buildTheHtmlOutput += value.bookSeries + ',  ' + value.bookAuthor;
                 buildTheHtmlOutput += '</div>';
             }
             //            buildTheHtmlOutput += '<p class="series-author">' + value.bookAuthor + '</p>';
@@ -171,7 +171,7 @@ function displayBooksBySeries(books) {
             //            buildTheHtmlOutput += '<div class="series-wrapper col-12">';
             //            buildTheHtmlOutput += '<div class="placeholder col-1">w</div>';
             //            buildTheHtmlOutput += '<div class="books-in-series col-11">';
-            buildTheHtmlOutput += '<div class="book-entry col-4">';
+            buildTheHtmlOutput += '<div class="book-entry col-3">';
             buildTheHtmlOutput += '<div class="image-background">';
             buildTheHtmlOutput += '<img src="' + value.bookThumbnail + '" />';
             buildTheHtmlOutput += '</div>';
@@ -573,18 +573,18 @@ $(document).on('submit', '.series-finder', function (event) {
 });
 
 // delete books
-$(document).on('submit', '.delete-book', function (event) {
+$('.delete-book').on('submit', function (event) {
     event.preventDefault();
     let idParameter = $(this).parent().find('.formID').val();
-    var updatedObject = {
-        'bookSeries': bookSeries
-    };
-    console.log(updatedObject);
+    //            var updatedObject = {
+    //        'bookSeries': bookSeries
+    //    };
+    //    console.log(updatedObject);
     $.ajax({
-            method: 'PUT',
-            dataType: 'json',
-            contentType: 'application/json',
-            data: JSON.stringify(updatedObject),
+            method: 'DELETE',
+//            dataType: 'json',
+//            contentType: 'application/json',
+            //            data: JSON.stringify(updatedObject),
             url: "/get-favorites/" + idParameter
             //            url: '/book/:id'
         })
@@ -595,15 +595,6 @@ $(document).on('submit', '.delete-book', function (event) {
 
         });
 });
-
-// show new releases by authors in collection
-function searchForNewReleases(username) {
-    // GET favorites organized by author
-    // make API call for authors in favorites (search by author)
-    // display if publish date is within the last year
-    // user can hide book if not interested
-}
-
 
 $(document).ready(function (event) {
     $(".dashboard").hide();

@@ -310,8 +310,9 @@ app.put('/get-favorites/:id', function (req, res) {
     });
 });
 
+
 // DELETE: deleting a lead
-app.delete('/leads/:id', function (req, res) {
+app.delete('/get-favorites/:id', function (req, res) {
     Lead.findByIdAndRemove(req.params.id).exec().then(function (lead) {
         return res.status(204).end();
     }).catch(function (err) {
