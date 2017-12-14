@@ -313,7 +313,7 @@ app.put('/get-favorites/:id', function (req, res) {
 
 // DELETE: deleting a lead
 app.delete('/get-favorites/:id', function (req, res) {
-    Lead.findByIdAndRemove(req.params.id).exec().then(function (lead) {
+    Book.findByIdAndRemove(req.params.id).exec().then(function (Book) {
         return res.status(204).end();
     }).catch(function (err) {
         return res.status(500).json({

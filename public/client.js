@@ -573,26 +573,28 @@ $(document).on('submit', '.series-finder', function (event) {
 });
 
 // delete books
-$('.delete-book').on('submit', function (event) {
+$(document).on('submit', '.delete-book', function (event) {
     event.preventDefault();
     let idParameter = $(this).parent().find('.formID').val();
+    console.log(idParameter);
     //            var updatedObject = {
     //        'bookSeries': bookSeries
     //    };
     //    console.log(updatedObject);
     $.ajax({
             method: 'DELETE',
-//            dataType: 'json',
-//            contentType: 'application/json',
+            //            dataType: 'json',
+            //            contentType: 'application/json',
             //            data: JSON.stringify(updatedObject),
             url: "/get-favorites/" + idParameter
             //            url: '/book/:id'
         })
+
         .done(function (result) {
             //            populateFavoritesContainer(username);
             //            populateBeenThereContainer();
             //            sweetAlert('Success!', 'Go explore!', 'success');
-
+            $(this).parent().find('.formID').hide()
         });
 });
 
