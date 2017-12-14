@@ -130,6 +130,13 @@ function populateSeriesContainer(username) {
             // display search results
             console.log(result);
             displayBooksBySeries(result);
+            // show/hide books in series
+            $('.books-by-series .book-entry').hide();
+            $('.series-title').on("click", this, function (event) {
+                //    $(this).nextAll('.books-in-series').toggleClass("hidden")
+                console.log("toggle books");
+                $(this).nextUntil('.series-title').toggle();
+            });
         })
         // if API call unsuccessful
         .fail(function (jqXHR, error, errorThrown) {
@@ -153,26 +160,26 @@ function displayBooksBySeries(books) {
     $.each(output, function (index, value) {
         if (value.bookSeries != "") {
             currentSeries = value.bookSeries;
-            buildTheHtmlOutput += '<div class="series">';
+            //            buildTheHtmlOutput += '<div class="series">';
             if (currentSeries != oldSeries) {
-                buildTheHtmlOutput += '<div class="series-title">';
+                buildTheHtmlOutput += '<div class="series-title col-12">';
                 buildTheHtmlOutput += value.bookSeries + ', ' + value.bookAuthor;
                 buildTheHtmlOutput += '</div>';
             }
             //            buildTheHtmlOutput += '<p class="series-author">' + value.bookAuthor + '</p>';
             //            buildTheHtmlOutput += '<p class="series-name">' + value.bookSeries + '</p><br/>';
-            buildTheHtmlOutput += '<div class="series-wrapper">';
-            buildTheHtmlOutput += '<div class="placeholder col-1">w</div>';
-            buildTheHtmlOutput += '<div class="books-in-series col-11">';
-            buildTheHtmlOutput += '<div class="book-entry">';
+            //            buildTheHtmlOutput += '<div class="series-wrapper col-12">';
+            //            buildTheHtmlOutput += '<div class="placeholder col-1">w</div>';
+            //            buildTheHtmlOutput += '<div class="books-in-series col-11">';
+            buildTheHtmlOutput += '<div class="book-entry col-4">';
             buildTheHtmlOutput += '<div class="image-background">';
             buildTheHtmlOutput += '<img src="' + value.bookThumbnail + '" />';
             buildTheHtmlOutput += '</div>';
             buildTheHtmlOutput += '<p class="book-title">' + value.bookTitle + '</p>';
             buildTheHtmlOutput += '<p class="author">' + value.bookAuthor + '</p>';
-            buildTheHtmlOutput += '</div>';
-            buildTheHtmlOutput += '</div>';
-            buildTheHtmlOutput += '</div>';
+            //            buildTheHtmlOutput += '</div>';
+            //            buildTheHtmlOutput += '</div>';
+            //            buildTheHtmlOutput += '</div>';
             buildTheHtmlOutput += '</div>';
             oldSeries = currentSeries;
         }
@@ -454,12 +461,6 @@ $("#dashboard-author-search").on("submit", function (event) {
 // remove book entry from new releases
 $('.remove').on("click", function (event) {
     $('.book-entry').eventCurrentTarget.hide();
-});
-
-// show/hide books in series
-$('.series-author, .series-name').on("click", this, function (event) {
-    //    $(this).nextAll('.books-in-series').toggleClass("hidden")
-    $(this).nextAll('.series-wrapper').toggle();
 });
 
 $(document).on('submit', '.add-to-favorites', function (event) {
