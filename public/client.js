@@ -20,7 +20,7 @@ function displayBooks(books) {
     } else {
         $.each(books.items, function (index, value) {
             console.log(value.volumeInfo);
-            buildTheHtmlOutput += '<div class="book-entry">';
+            buildTheHtmlOutput += '<div class="book-entry col-12">';
             if (value.volumeInfo.imageLinks == undefined) {
                 buildTheHtmlOutput += '<img src="images/no-image.gif">';
             } else {
@@ -30,7 +30,8 @@ function displayBooks(books) {
             buildTheHtmlOutput += '<div class="book-info">';
             buildTheHtmlOutput += '<p class="book-title">' + value.volumeInfo.title + '</p>';
             buildTheHtmlOutput += '<p class="author">' + value.volumeInfo.authors + '</p>';
-            buildTheHtmlOutput += '<p class="book-blurb">"The Eighth Story. Nineteen Years Later. Based on an original new story by J.K. Rowling, John Tiffany and Jack Thorne. It was always difficult being Harry Potter and it isn\'t much easier now that he is an overworked employee of the Ministry of Magic, a husband, and father of three school - age children.While Harry grapples with a past that refuses to stay where it belongs, his youngest son Albus must struggle with the weight of a family legacy he never wanted.As past and present fuse ominously, both father and son learn the uncomfortable truth: sometimes, more < /p>';
+            buildTheHtmlOutput += '<p class="book-blurb">' + value.volumeInfo.description + '</p>';
+            //            buildTheHtmlOutput += '<p class="book-blurb">' + value.volumeInfo.description '</p>';
             buildTheHtmlOutput += '<form class="add-to-favorites">';
             buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-title" value="' + value.volumeInfo.title + '">';
             buildTheHtmlOutput += '<input type="hidden" class="add-to-favorites-book-subtitle" value="' + value.volumeInfo.subtitle + '">';
@@ -281,7 +282,7 @@ $("#login-btn").on("click", function (event) {
                 console.log(result);
                 username = result.username;
                 $('.header').hide();
-                $('.dashboard').show();
+                $('.my-profile').show();
                 populateFavoritesContainer(username);
                 populateSeriesContainer(username);
                 //            sortBooksBySeries();
@@ -390,7 +391,7 @@ $('#nav-new-releases').on("click", function (event) {
 $("#author-search").on("submit", function (event) {
     // take input from user
     event.preventDefault();
-    var searchInput = $(".author-search-input").val();
+    var searchInput = $("#search-input").val();
     console.log(searchInput);
     // check username for spaces, empty, undefined
     if (searchInput.length < 1) {
@@ -409,6 +410,8 @@ $("#author-search").on("submit", function (event) {
                 // display search results
                 console.log(result);
                 displayBooks(result);
+                searchInput = "";
+                $("#search-input").val("");
             })
             // if API call unsuccessful
             .fail(function (jqXHR, error, errorThrown) {
@@ -421,41 +424,41 @@ $("#author-search").on("submit", function (event) {
     }
 });
 
-$("#dashboard-author-search").on("submit", function (event) {
-    // take input from user
-    event.preventDefault();
-    var searchInput = $(".author-search-input").val();
-    console.log(searchInput);
-    // check username for spaces, empty, undefined
-    if (searchInput.length < 1) {
-        alert('Please enter a search term');
-    }
-    // if search is valid
-    else {
-        $.ajax({
-                type: "GET",
-                url: "/search/" + searchInput,
-                dataType: 'json',
-                contentType: 'application/json'
-            })
-            // if API call is successful
-            .done(function (result) {
-                // display search results
-                console.log(result);
-                displayBooks(result);
-                $('.dashboard').hide();
-                $('.search-results').show();
-            })
-            // if API call unsuccessful
-            .fail(function (jqXHR, error, errorThrown) {
-                // return errors
-                console.log(jqXHR);
-                console.log(error);
-                console.log(errorThrown);
-                alert('Something went wrong');
-            });
-    }
-});
+//$("#author-search").on("submit", function (event) {
+//    // take input from user
+//    event.preventDefault();
+//    var searchInput = $("#search-input").val();
+//    console.log(searchInput);
+//    // check username for spaces, empty, undefined
+//    if (searchInput.length < 1) {
+//        alert('Please enter a search term');
+//    }
+//    // if search is valid
+//    else {
+//        $.ajax({
+//                type: "GET",
+//                url: "/search/" + searchInput,
+//                dataType: 'json',
+//                contentType: 'application/json'
+//            })
+//            // if API call is successful
+//            .done(function (result) {
+//                // display search results
+//                console.log(result);
+//                displayBooks(result);
+//                $('.dashboard').hide();
+//                $('.search-results').show();
+//            })
+//            // if API call unsuccessful
+//            .fail(function (jqXHR, error, errorThrown) {
+//                // return errors
+//                console.log(jqXHR);
+//                console.log(error);
+//                console.log(errorThrown);
+//                alert('Something went wrong');
+//            });
+//    }
+//});
 
 
 // remove book entry from new releases
@@ -512,32 +515,32 @@ $("#create-series").on("submit", function (event) {
     event.preventDefault();
     var bookSeries = $("#series-input").val();
     // check for valid input
-    if (bookSeries.length < 1) {
-        alert('Please enter a series name');
-    }
+    //    if (bookSeries.length < 1) {
+    //        alert('Please enter a series name');
+    //    }
     // if series is valid
-    else {
-        $.ajax({
-                type: "POST",
-                url: "/series/create/" + bookSeries,
-                dataType: 'json',
-                contentType: 'application/json'
-            })
-            // if API call is successful
-            .done(function (result) {
-                // display series in dropdown
-                console.log(result);
-                populateSeriesDropdown();
-            })
-            // if API call unsuccessful
-            .fail(function (jqXHR, error, errorThrown) {
-                // return errors
-                console.log(jqXHR);
-                console.log(error);
-                console.log(errorThrown);
-                alert('Something went wrong');
-            });
-    }
+    //    else {
+    $.ajax({
+            type: "POST",
+            url: "/series/create/" + bookSeries,
+            dataType: 'json',
+            contentType: 'application/json'
+        })
+        // if API call is successful
+        .done(function (result) {
+            // display series in dropdown
+            console.log(result);
+            populateSeriesDropdown();
+        })
+        // if API call unsuccessful
+        .fail(function (jqXHR, error, errorThrown) {
+            // return errors
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            alert('Something went wrong');
+        });
+    //    }
 });
 
 
