@@ -63,7 +63,7 @@ function generateBookData() {
         bookSubtitle: faker.lorem.sentence(),
         bookAuthor: faker.random.word(),
         bookThumbnail: 'public/images/book-thumbnail-placeholder.jpg',
-        bookUser: newUser,
+        bookUser: newUser.username,
         bookSeries: faker.lorem.sentence()
     }
 }
@@ -79,8 +79,7 @@ function generateSeries() {
 //    return mongoose.connection.dropDatabase();
 //}
 
-
-describe('book APIs', function () {
+describe('users', function () {
     before(function () {
         return runServer(TEST_DATABASE_URL)
             .then(console.log('running server'))
@@ -88,10 +87,6 @@ describe('book APIs', function () {
                 err
             }));
     });
-    beforeEach(function () {
-        return seedBookData();
-    });
-
     describe('POST endpoint', function () {
         it('should create a new user', function () {
             return chai.request(app)
@@ -110,39 +105,41 @@ describe('book APIs', function () {
                 .then(function (user) {
                     user.username.should.equal(newUser.username);
                 });
-
-
-
-            //            return chai.request(app)
-            //                .post('/users/create')
-            //                .then(function (res) {
-            //                    //                res.should.have.status(200);
-            //                    return res.json();
-            //                    //                    res.body.should.have.length.of.at.least(1);
-            //                })
-            //                .then(function (res) {
-            //                    res.body.should.have.length.of(count);
-            //                });
-            //        })
         });
+    });
+
+})
+
+describe('books', function () {
+    before(function () {
+        return runServer(TEST_DATABASE_URL)
+            .then(console.log('running server'))
+            .catch(err => console.log({
+                err
+            }));
+    });
+    beforeEach(function () {
+        return seedBookData();
     });
 
     describe('GET endpoint', function () {
         it('should return all books in db for the user', function () {
+            let res;
             return chai.request(app)
-                .get('/get-favorites/' + testUsername)
-                .then(function (res) {
+                .get('/get-favorites/' + newUser.username)
+                .then(function (_res) {
+                    res = _res;
                     res.should.have.status(200);
+                    res.body.should.have.length.of.at.least(1);
                     return book.count();
-                    //                    res.body.should.have.length.of.at.least(1);
                 })
-                .then(function (res) {
-                    res.body.should.have.length.of(count);
+                .then(function (count) {
+                    res.body.books.should.have.length.of(count);
                 });
         });
         it('should return books with the correct fields', function () {
             return chai.request(app)
-                .get('/get-favorites/:' + testUsername)
+                .get('/get-favorites/:' + newUser.username)
                 .then(function (res) {
                     res.should.have.status(200);
                     res.should.be.json;
