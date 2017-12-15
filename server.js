@@ -61,39 +61,39 @@ function closeServer() {
     });
 }
 
-// ----------- LEAD ENDPOINTS ------------------------
-// GET: getting all the lead objects to populate the dashboard
-app.get('/leads', function (req, res) {
-    Lead
-        .find()
-        .then(function (leads) {
-            res.json({
-                leads: leads.map(function (lead) {
-                    return lead;
-                })
-            });
-        })
-        .catch(function (err) {
-            console.error(err);
-            res.status(500).json({
-                message: 'Internal server error'
-            });
-        });
-});
-
-// GET: getting one lead object
-app.get('/leads/:id', function (req, res) {
-    Lead
-        .findById(req.params.id).exec().then(function (lead) {
-            return res.json(lead);
-        })
-        .catch(function (leads) {
-            console.error(err);
-            res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        });
-});
+//// ----------- LEAD ENDPOINTS ------------------------
+//// GET: getting all the lead objects to populate the dashboard
+//app.get('/leads', function (req, res) {
+//    Lead
+//        .find()
+//        .then(function (leads) {
+//            res.json({
+//                leads: leads.map(function (lead) {
+//                    return lead;
+//                })
+//            });
+//        })
+//        .catch(function (err) {
+//            console.error(err);
+//            res.status(500).json({
+//                message: 'Internal server error'
+//            });
+//        });
+//});
+//
+//// GET: getting one lead object
+//app.get('/leads/:id', function (req, res) {
+//    Lead
+//        .findById(req.params.id).exec().then(function (lead) {
+//            return res.json(lead);
+//        })
+//        .catch(function (leads) {
+//            console.error(err);
+//            res.status(500).json({
+//                message: 'Internal Server Error'
+//            });
+//        });
+//});
 
 // POST: signing in a user
 // next step is verifying and validating the user credentials
