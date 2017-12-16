@@ -2,5 +2,5 @@ exports.DATABASE_URL = process.env.DATABASE_URL ||
     global.DATABASE_URL ||
     'mongodb://admin:admin@ds119476.mlab.com:19476/book-series-tracker-node-capstone';
 exports.TEST_DATABASE_URL = process.env.TEST_DATABASE_URL ||
-    'mongodb://admin:admin@ds119476.mlab.com:19476/book-series-tracker-node-capstone';
+    'mongodb://admin:admin@ds059207.mlab.com:59207/book-series-tracker-capstone-test';
 exports.PORT = process.env.PORT || 8080;

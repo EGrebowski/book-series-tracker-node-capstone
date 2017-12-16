@@ -551,7 +551,8 @@ $(document).on('submit', '.series-finder', function (event) {
     //        var bookTitle = $(this).parent().find('.add-to-favorites-book-title').val();
     //        var bookAuthor = $(this).parent().find('.add-to-favorites-book-author').val();
     //        var bookThumbnail = $(this).parent().find('.add-to-favorites-book-thumbnail').val();
-    //        var bookUser = $(this).parent().find('.add-to-favorites-book-user').val();
+    var bookUser = $(this).parent().find('.add-to-series-book-user').val();
+    console.log(bookUser);
     var bookSeries = $(this).parent().find('.add-to-series-name').val();
     //    var idFromButton = $('.book-entry').attr('id');
     let idParameter = $(this).parent().find('.formID').val();
@@ -568,10 +569,20 @@ $(document).on('submit', '.series-finder', function (event) {
             //            url: '/book/:id'
         })
         .done(function (result) {
+            //            console.log(result);
+            //            displayFavoritesContainer(result);
+            populateFavoritesContainer(bookUser);
             //            populateFavoritesContainer(username);
             //            populateBeenThereContainer();
             //            sweetAlert('Success!', 'Go explore!', 'success');
 
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            // return errors
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            alert('Something went wrong');
         });
 });
 
@@ -598,6 +609,13 @@ $(document).on('submit', '.delete-book', function (event) {
             //            populateBeenThereContainer();
             //            sweetAlert('Success!', 'Go explore!', 'success');
             $(this).parent().find('.formID').hide()
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            // return errors
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            alert('Something went wrong');
         });
 });
 

@@ -24,12 +24,11 @@ const {
     closeServer
 } = require('../server');
 
-// import TEST_DATABASE_URL from ('../config');
+
 const {
-    DATABASE_URL,
     TEST_DATABASE_URL
 } = require('../config');
-console.log(TEST_DATABASE_URL);
+
 
 const should = require('chai').should();
 chai.use(chaiHttp);
@@ -49,6 +48,10 @@ function seedBookData() {
 
 //const testUsername = faker.random.word() + faker.random.number();
 const newUser = generateUserData();
+const newUser = {
+    username: 'testusername',
+    password: 'testpassword'
+}
 
 function generateUserData() {
     return {
@@ -60,7 +63,7 @@ function generateUserData() {
 function generateBookData() {
     return {
         bookTitle: faker.lorem.sentence(),
-        bookSubtitle: faker.lorem.sentence(),
+        //        bookSubtitle: faker.lorem.sentence(),
         bookAuthor: faker.random.word(),
         bookThumbnail: 'public/images/book-thumbnail-placeholder.jpg',
         bookUser: newUser.username,
@@ -74,10 +77,10 @@ function generateSeries() {
     }
 }
 
-//function tearDownDb() {
-//    console.warn('Deleting database');
-//    return mongoose.connection.dropDatabase();
-//}
+function tearDownDb() {
+    console.warn('Deleting database');
+    //    return mongoose.connection.dropDatabase();
+}
 
 describe('users', function () {
     before(function () {
@@ -121,6 +124,9 @@ describe('books', function () {
     beforeEach(function () {
         return seedBookData();
     });
+    afterEach(function () {
+        return tearDownDb();
+    });
 
     describe('GET endpoint', function () {
         it('should return all books in db for the user', function () {
@@ -134,7 +140,7 @@ describe('books', function () {
                     return book.count();
                 })
                 .then(function (count) {
-                    res.body.books.should.have.length.of(count);
+                    res.body.should.have.length.of(count);
                 });
         });
         it('should return books with the correct fields', function () {
@@ -170,7 +176,7 @@ describe('books', function () {
                     res.body.should.include.keys(
                         '__v', '_id', 'bookTitle', 'bookAuthor', 'bookThumbnail', 'bookUser', 'bookSeries');
                     res.body.bookTitle.should.equal(newBook.bookTitle);
-                    res.body.bookSubtitle.should.equal(newBook.bookSubtitle);
+                    //                    res.body.bookSubtitle.should.equal(newBook.bookSubtitle);
                     res.body.bookAuthor.should.equal(newBook.bookAuthor);
                     res.body.bookThumbnail.should.equal(newBook.bookThumbnail);
                     res.body.bookUser.should.equal(newBook.bookUser);

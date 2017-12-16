@@ -24,9 +24,12 @@ mongoose.Promise = global.Promise;
 
 var server = undefined;
 
-function runServer() {
+function runServer(databaseUrl) {
+    if (databaseUrl == "") {
+        databaseUrl = config.DATABASE_URL;
+    }
     return new Promise(function (resolve, reject) {
-        mongoose.connect(config.DATABASE_URL, function (err) {
+        mongoose.connect(databaseUrl, function (err) {
             if (err) {
                 return reject(err);
             }
@@ -42,7 +45,7 @@ function runServer() {
 }
 
 if (require.main === module) {
-    runServer().catch(function (err) {
+    runServer(config.DATABASE_URL).catch(function (err) {
         return console.error(err);
     });
 };
@@ -301,7 +304,8 @@ app.put('/get-favorites/:id', function (req, res) {
     });
     Book.findByIdAndUpdate(req.params.id, {
         $set: toUpdate
-    }).exec().then(function (Book) {
+    }).exec().then(function (result) {
+        console.log(result);
         return res.status(204).end();
     }).catch(function (err) {
         return res.status(500).json({
