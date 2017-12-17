@@ -116,6 +116,16 @@ function displayFavoritesContainer(books) {
     }
 }
 
+function assignUserToSeries(username) {
+    var buildTheHtmlOutput = '';
+    //    buildTheHtmlOutput += '<form action="#" name="create-series" id="create-series">';
+    buildTheHtmlOutput += '<label for="series-input">Create a Book Series</label><br>';
+    buildTheHtmlOutput += '<input type="text" name="series-input" id="series-input" placeholder="series name">';
+    buildTheHtmlOutput += '<input type="hidden" class="series-user" value="' + username + '">';
+    buildTheHtmlOutput += '<button type="submit">Create</button>';
+    //    buildTheHtmlOutput += '</form>';
+    $("#create-series").html(buildTheHtmlOutput);
+}
 
 function populateSeriesContainer(username) {
     console.log("populateSeriesContainer ran");
@@ -279,6 +289,7 @@ $("#login-btn").on("click", function (event) {
                 $('.my-profile').show();
                 $(".nav-buttons").show();
                 populateFavoritesContainer(username);
+                assignUserToSeries(username)
                 populateSeriesContainer(username);
             })
             // if API call unsuccessful
@@ -449,17 +460,24 @@ $(document).on('submit', '.add-to-favorites', function (event) {
 // populate the series dropdown
 $("#create-series").on("submit", function (event) {
     event.preventDefault();
-    var bookSeries = $("#series-input").val();
+    var seriesName = $("#series-input").val();
+    var bookUser = $(".series-user").val();
+    var seriesObject = {
+        username: bookUser,
+        bookSeries: seriesName
+    }
+    console.log(bookUser);
     //     check for valid input
-    if (bookSeries.length < 1) {
+    if (seriesName.length < 1) {
         alert('Please enter a series name');
     }
     // if series is valid
     else {
         $.ajax({
                 type: "POST",
-                url: "/series/create/" + bookSeries,
+                url: "/series/create",
                 dataType: 'json',
+                data: JSON.stringify(seriesObject),
                 contentType: 'application/json'
             })
             // if API call is successful
@@ -468,7 +486,7 @@ $("#create-series").on("submit", function (event) {
                 console.log(result);
                 populateSeriesDropdown();
                 // reset input
-                bookSeries = "";
+                seriesName = "";
                 $("#series-input").val("");
             })
             // if API call unsuccessful

@@ -224,14 +224,11 @@ app.get('/get-favorites/:username', function (req, res) {
 
 // POST: creating a new series
 // local API endpoint in server.js
-app.post('/series/create/:series', function (req, res) {
+app.post('/series/create', function (req, res) {
     // step b5: send the local data to the database
     Series.create({
-        //        bookTitle: req.body.bookTitle,
-        //        bookAuthor: req.body.bookAuthor,
-        //        bookThumbnail: req.body.bookThumbnail,
-        //        bookUser: req.body.bookUser,
-        bookSeries: req.params.series
+        bookUser: req.body.username,
+        bookSeries: req.body.bookSeries
     }, function (err, lead) {
         // step b6: return the result of DB call
         if (err) {
@@ -241,7 +238,6 @@ app.post('/series/create/:series', function (req, res) {
         }
         // step b7: send the result back to client.js
         res.status(201).json(lead);
-
     });
 });
 

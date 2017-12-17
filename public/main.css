@@ -209,12 +209,12 @@ header p {
 .signup-box input {
     margin-top: -20px;
     display: block;
-    width: 90%;
+    width: 100%;
 }
 
 .header form button {
     display: block;
-    width: 90%;
+    width: 100%;
     background-color: #203A0F;
     color: #8CA57A;
 }
@@ -229,6 +229,10 @@ header p {
 
     /*    display: inline-block;*/
     font-size: .85rem;
+}
+
+.header .form-footer {
+    width: 100%
 }
 
 .header form p {
