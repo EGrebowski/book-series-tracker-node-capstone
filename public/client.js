@@ -283,6 +283,7 @@ $("#login-btn").on("click", function (event) {
                 username = result.username;
                 $('.header').hide();
                 $('.my-profile').show();
+                $(".nav-buttons").show();
                 populateFavoritesContainer(username);
                 populateSeriesContainer(username);
                 //            sortBooksBySeries();
@@ -339,6 +340,7 @@ $("#signup-btn").on("click", function (event) {
                 // display results
                 $('.header').hide();
                 $('.search-results').show();
+                $(".nav-buttons").show();
             })
             // if login is unsuccessful
             .fail(function (jqXHR, error, errorThrown) {
@@ -589,6 +591,7 @@ $(document).on('submit', '.series-finder', function (event) {
 // delete books
 $(document).on('submit', '.delete-book', function (event) {
     event.preventDefault();
+    var bookUser = $(this).parent().find('.add-to-series-book-user').val();
     let idParameter = $(this).parent().find('.formID').val();
     console.log(idParameter);
     //            var updatedObject = {
@@ -597,18 +600,14 @@ $(document).on('submit', '.delete-book', function (event) {
     //    console.log(updatedObject);
     $.ajax({
             method: 'DELETE',
-            //            dataType: 'json',
-            //            contentType: 'application/json',
-            //            data: JSON.stringify(updatedObject),
             url: "/get-favorites/" + idParameter
-            //            url: '/book/:id'
         })
 
         .done(function (result) {
             //            populateFavoritesContainer(username);
             //            populateBeenThereContainer();
             //            sweetAlert('Success!', 'Go explore!', 'success');
-            $(this).parent().find('.formID').hide()
+            populateFavoritesContainer(bookUser);
         })
         .fail(function (jqXHR, error, errorThrown) {
             // return errors
@@ -620,7 +619,8 @@ $(document).on('submit', '.delete-book', function (event) {
 });
 
 $(document).ready(function (event) {
-    $(".dashboard").hide();
+    $(".nav-buttons").hide();
+    //    $(".dashboard").hide();
     $(".search-results").hide();
     $(".my-profile").hide();
     $(".new-releases-full").hide();

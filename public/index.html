@@ -14,10 +14,12 @@
     <nav role="navigation">
         <h3>Next Book</h3>
         <div class="nav-buttons">
-            <a href="#" id="nav-dashboard">Dashboard</a>
-            <a href="#" id="nav-search">Find Books</a>
+            <!--            <a href="#" id="nav-dashboard">Dashboard</a>-->
             <a href="#" id="nav-profile">My Library</a>
-            <a href="#" id="nav-new-releases">New Releases</a>
+            <a href="#" id="nav-search">Find Books</a>
+            <a href="#" id="logout">Log Out</a>
+
+            <!--            <a href="#" id="nav-new-releases">New Releases</a>-->
         </div>
     </nav>
 
@@ -56,6 +58,7 @@
         <div class="placeholder col-1">w</div>
     </section>
 
+    <!--
     <section class="dashboard">
         <div class="col-1 placeholder">w</div>
         <section class="search col-10">
@@ -94,64 +97,70 @@
             </div>
             <p class="see-more">See More</p>
         </section>
+-->
 
-        <section class="my-books col-8">
-            <h4>My Favorites</h4>
-            <div class="book-entry col-4">
-                <div class="image-background">
-                    <img src="images/book-thumbnail-placeholder.jpg" />
-                </div>
-                <p class="book-title">Harry Potter and the Cursed Child</p>
-                <p class="author">J.K. Rowling</p>
+    <!--
+<section class="my-books col-8">
+    <h4>My Favorites</h4>
+    <div class="book-entry col-4">
+        <div class="image-background">
+            <img src="images/book-thumbnail-placeholder.jpg" />
+        </div>
+        <p class="book-title">Harry Potter and the Cursed Child</p>
+        <p class="author">J.K. Rowling</p>
 
-            </div>
-            <div class="book-entry col-4">
-                <div class="image-background">
-                    <img src="images/book-thumbnail-placeholder.jpg" />
-                </div>
-                <p class="book-title">Harry Potter and the Cursed Child</p>
-                <p class="author">J.K. Rowling</p>
-            </div>
-            <div class="book-entry col-4">
-                <div class="image-background">
-                    <img src="images/book-thumbnail-placeholder.jpg" />
-                </div>
-                <p class="book-title">Harry Potter and the Cursed Child</p>
-                <p class="author">J.K. Rowling</p>
-            </div>
-            <p class="see-more">See More</p>
-        </section>
-    </section>
+    </div>
+    <div class="book-entry col-4">
+        <div class="image-background">
+            <img src="images/book-thumbnail-placeholder.jpg" />
+        </div>
+        <p class="book-title">Harry Potter and the Cursed Child</p>
+        <p class="author">J.K. Rowling</p>
+    </div>
+    <div class="book-entry col-4">
+        <div class="image-background">
+            <img src="images/book-thumbnail-placeholder.jpg" />
+        </div>
+        <p class="book-title">Harry Potter and the Cursed Child</p>
+        <p class="author">J.K. Rowling</p>
+    </div>
+    <p class="see-more">See More</p>
+</section>
+</section>
+-->
 
     <section class="search-results col-12">
         <div class="search col-12">
             <div class="col-3 placeholder">h</div>
             <form action="#" name="author-search" id="author-search" class="col-6">
                 <label for="search-input">Find Books</label><br>
-                <input type="text" name="search-input" id="search-input" placeholder="author search" class="col-9 author-search-input">
+                <input type="text" name="search-input" id="search-input" placeholder="book title" class="col-9 author-search-input">
                 <button type=" submit " class="col-3 ">Search</button>
             </form>
             <div class="col-3 placeholder ">f</div>
         </div>
+        <div id="search-results-placeholder">a</div>
         <div class="results ">
-            <div class="book-entry ">
-                <img src="images/book-thumbnail-placeholder.jpg " />
-                <div class="book-info ">
-                    <p class="book-title ">Harry Potter and the Cursed Child</p>
-                    <p class="author ">J.K. Rowling</p>
-                    <p class="book-blurb ">"The Eighth Story. Nineteen Years Later. Based on an original new story by J.K. Rowling, John Tiffany and Jack Thorne. It was always difficult being Harry Potter and it isn 't much easier now that he is an overworked employee of the Ministry of Magic, a husband, and father of three school-age children. While Harry grapples with a past that refuses to stay where it belongs, his youngest son Albus must struggle with the weight of a family legacy he never wanted. As past and present fuse ominously, both father and son learn the uncomfortable truth: sometimes, more</p>
-                    <button class="add" type="submit">Add to My Profile</button>
-                </div>
-            </div>
-            <div class="book-entry">
-                <img src="images/book-thumbnail-placeholder.jpg" />
-                <div class="book-info">
-                    <p class="book-title">Harry Potter and the Cursed Child</p>
-                    <p class="author">J.K. Rowling</p>
+            <!--
+<div class="book-entry ">
+    <img src="images/book-thumbnail-placeholder.jpg " />
+    <div class="book-info ">
+        <p class="book-title ">Harry Potter and the Cursed Child</p>
+        <p class="author ">J.K. Rowling</p>
+        <p class="book-blurb ">"The Eighth Story. Nineteen Years Later. Based on an original new story by J.K. Rowling, John Tiffany and Jack Thorne. It was always difficult being Harry Potter and it isn 't much easier now that he is an overworked employee of the Ministry of Magic, a husband, and father of three school-age children. While Harry grapples with a past that refuses to stay where it belongs, his youngest son Albus must struggle with the weight of a family legacy he never wanted. As past and present fuse ominously, both father and son learn the uncomfortable truth: sometimes, more</p>
+        <button class="add" type="submit">Add to My Profile</button>
+    </div>
+</div>
+<div class="book-entry">
+    <img src="images/book-thumbnail-placeholder.jpg" />
+    <div class="book-info">
+        <p class="book-title">Harry Potter and the Cursed Child</p>
+        <p class="author">J.K. Rowling</p>
 
-                    <button class="add" type="submit">Add to My Profile</button>
-                </div>
-            </div>
+        <button class="add" type="submit">Add to My Profile</button>
+    </div>
+</div>
+-->
         </div>
     </section>
 
@@ -253,6 +262,7 @@
         </div>
     </section>
 
+    <!--
     <section class="new-releases-full col-12">
         <h4>New Releases by My Authors</h4>
         <div class="book-entry col-4">
@@ -316,6 +326,7 @@
             <button class="remove" type="submit">Remove from List</button>
         </div>
     </section>
+-->
 
     <footer role="contentinfo">
         <ul>
