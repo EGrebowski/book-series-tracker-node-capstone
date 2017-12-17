@@ -13,6 +13,8 @@ const mongoose = require('mongoose');
 const book = require('../models/book');
 console.log(book);
 
+const Series = require('../models/series');
+
 const User = require('../models/user');
 console.log(User);
 
@@ -47,7 +49,8 @@ function seedBookData() {
 }
 
 //const testUsername = faker.random.word() + faker.random.number();
-const newUser = generateUserData();
+const searchTerm = 'Harry Potter';
+
 const newUser = {
     username: 'testusername',
     password: 'testpassword'
@@ -91,6 +94,7 @@ describe('users', function () {
             }));
     });
     describe('POST endpoint', function () {
+        const newUser = generateUserData();
         it('should create a new user', function () {
             return chai.request(app)
                 .post('/users/create')
@@ -150,7 +154,7 @@ describe('books', function () {
                     res.should.have.status(200);
                     res.should.be.json;
                     res.body.should.be.a('array');
-                    res.body.should.have.length.of.at.least(1);
+                    //                    res.body.should.have.length.of.at.least(1);
                     res.body.forEach(function (book) {
                         book.should.be.a('object');
                         book.should.include.keys(
@@ -165,9 +169,8 @@ describe('books', function () {
         it('should add a new book', function () {
             const newBook = generateBookData();
             console.log(newBook);
-
             return chai.request(app)
-                .post('/add-to-favorites')
+                .post('/add-to-favorites/')
                 .send(newBook)
                 .then(function (res) {
                     res.should.have.status(201);
@@ -182,7 +185,6 @@ describe('books', function () {
                     res.body.bookUser.should.equal(newBook.bookUser);
                     res.body.bookSeries.should.equal(newBook.bookSeries);
                     res.body._id.should.not.be.null;
-
                     return book.findById(res.body.id);
                 });
         });
@@ -191,7 +193,7 @@ describe('books', function () {
             const newSeries = generateSeries();
             console.log(newSeries);
             return chai.request(app)
-                .post('/series/create')
+                .post('/series/create/' + newSeries.bookSeries)
                 .send(newSeries)
                 .then(function (res) {
                     res.should.have.status(201);
@@ -201,19 +203,55 @@ describe('books', function () {
                         'bookSeries');
                     res.body.bookSeries.should.equal(newSeries.bookSeries);
                     res.body._id.should.not.be.null;
-
                     return Series.findById(res.body.id);
                 });
 
         });
     });
 
-    //    describe('PUT endpoint', function () {
-    //        it('should update bookSeries field', function () {
-    //            const updatedData = {
-    //                bookSeries: faker.random.sentence();
-    //            };
-    //            return
-    //        });
-    //    });
+    describe('PUT endpoint', function () {
+        it('should update bookSeries field', function () {
+            const updatedData = {
+                bookSeries: faker.lorem.sentence()
+            };
+            return book
+                .findOne()
+                .then(function (book) {
+                    updatedData.id = book.id;
+                    updatedData.bookUser = book.bookUser;
+                    return chai.request(app)
+                        .put(`/get-favorites/${book.id}`)
+                        .send(updatedData);
+                })
+                .then(function (res) {
+                    res.should.have.status(204);
+                    return book.findById(updatedData.id);
+                })
+                .then(function (book) {
+                    //                    book.bookTitle.should.equal(updatedData.bookTitle);
+                    //                    book.bookAuthor.should.equal(updatedData.bookAuthor);
+                    //                    book.bookThumbnail.should.equal(updatedData.bookThumbnail);
+                    //                    book.bookUser.should.equal(updatedData.bookUser);
+                    book.bookSeries.should.equal(updatedData.bookSeries);
+
+                });
+        });
+    });
+
+    describe('DELETE endpoint', function () {
+        it('should delete a book from the db', function () {
+            return book
+                .findOne()
+                .then(function (book) {
+                    return chai.request(app).delete(`/get-favorites/${book.id}`);
+                })
+                .then(function (res) {
+                    res.should.have.status(204);
+                    return book.findById(book.id);
+                })
+                .then(function (book) {
+                    should.not.exist(book);
+                })
+        });
+    });
 });

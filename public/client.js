@@ -224,6 +224,17 @@ function displayDropdown(series) {
 }
 
 
+$(document).ready(function (event) {
+    $(".nav-buttons").hide();
+    //    $(".dashboard").hide();
+    $(".search-results").hide();
+    $(".my-profile").hide();
+    $(".new-releases-full").hide();
+    $(".login-box").hide();
+    //    $('.books-in-series').hide();
+    $(".series-wrapper").hide();
+});
+
 // Return to landing page
 $("nav h3").on("click", function (event) {
     $(".header").show();
@@ -286,8 +297,6 @@ $("#login-btn").on("click", function (event) {
                 $(".nav-buttons").show();
                 populateFavoritesContainer(username);
                 populateSeriesContainer(username);
-                //            sortBooksBySeries();
-
             })
             // if API call unsuccessful
             .fail(function (jqXHR, error, errorThrown) {
@@ -354,13 +363,13 @@ $("#signup-btn").on("click", function (event) {
 
 //Handle navbar links
 //Navigate to dashboard from navbar
-$('#nav-dashboard').on("click", function (event) {
-    $('.header').hide();
-    $(".search-results").hide();
-    $(".my-profile").hide();
-    $(".new-releases-full").hide();
-    $('.dashboard').show();
-});
+//$('#nav-dashboard').on("click", function (event) {
+//    $('.header').hide();
+//    $(".search-results").hide();
+//    $(".my-profile").hide();
+//    $(".new-releases-full").hide();
+//    $('.dashboard').show();
+//});
 
 // navigate to search page from navbar
 $('#nav-search').on("click", function (event) {
@@ -381,13 +390,13 @@ $('#nav-profile').on("click", function (event) {
 });
 
 // navigate to new releases from navbar
-$('#nav-new-releases').on("click", function (event) {
-    $('.header').hide();
-    $('.dashboard').hide();
-    $(".search-results").hide();
-    $(".my-profile").hide();
-    $(".new-releases-full").show();
-});
+//$('#nav-new-releases').on("click", function (event) {
+//    $('.header').hide();
+//    $('.dashboard').hide();
+//    $(".search-results").hide();
+//    $(".my-profile").hide();
+//    $(".new-releases-full").show();
+//});
 
 // search for books
 $("#author-search").on("submit", function (event) {
@@ -618,13 +627,7 @@ $(document).on('submit', '.delete-book', function (event) {
         });
 });
 
-$(document).ready(function (event) {
-    $(".nav-buttons").hide();
-    //    $(".dashboard").hide();
-    $(".search-results").hide();
-    $(".my-profile").hide();
-    $(".new-releases-full").hide();
-    $(".login-box").hide();
-    //    $('.books-in-series').hide();
-    $(".series-wrapper").hide();
+// when user clicks log out
+document.getElementById('logout').addEventListener('click', function () {
+    location.reload();
 });

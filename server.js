@@ -64,39 +64,6 @@ function closeServer() {
     });
 }
 
-//// ----------- LEAD ENDPOINTS ------------------------
-//// GET: getting all the lead objects to populate the dashboard
-//app.get('/leads', function (req, res) {
-//    Lead
-//        .find()
-//        .then(function (leads) {
-//            res.json({
-//                leads: leads.map(function (lead) {
-//                    return lead;
-//                })
-//            });
-//        })
-//        .catch(function (err) {
-//            console.error(err);
-//            res.status(500).json({
-//                message: 'Internal server error'
-//            });
-//        });
-//});
-//
-//// GET: getting one lead object
-//app.get('/leads/:id', function (req, res) {
-//    Lead
-//        .findById(req.params.id).exec().then(function (lead) {
-//            return res.json(lead);
-//        })
-//        .catch(function (leads) {
-//            console.error(err);
-//            res.status(500).json({
-//                message: 'Internal Server Error'
-//            });
-//        });
-//});
 
 // POST: signing in a user
 // next step is verifying and validating the user credentials
@@ -176,6 +143,8 @@ app.post('/users/create', function (req, res) {
     });
 });
 
+//// ----------- BOOK ENDPOINTS ------------------------
+
 // external API call
 var getBooksFromGoogle = function (searchTerm) {
     var emitter = new events.EventEmitter();
@@ -212,9 +181,8 @@ app.get('/search/:searchTerm', function (req, res) {
 
 
 // POST: creating a new book
-// step b4 (continuing from client.js): local API endpoint in server.js
 app.post('/add-to-favorites', function (req, res) {
-    // step b5: send the local data to the database
+    // send the local data to the database
     Book.create({
         bookTitle: req.body.bookTitle,
         bookSubtitle: req.body.bookSubtitle,
@@ -224,13 +192,13 @@ app.post('/add-to-favorites', function (req, res) {
         bookPublished: req.body.bookPublished,
         bookSeries: req.body.bookSeries
     }, function (err, lead) {
-        // step b6: return the result of DB call
+        // return the result of DB call
         if (err) {
             return res.status(500).json({
                 message: 'Internal Server Error'
             });
         }
-        // step b7: send the result back to client.js
+        // send the result back to client.js
         res.status(201).json(lead);
 
     });
