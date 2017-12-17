@@ -22,12 +22,16 @@ function displayBooks(books) {
             console.log(value.volumeInfo);
             buildTheHtmlOutput += '<div class="book-entry col-12">';
             if (value.volumeInfo.imageLinks == undefined) {
+                buildTheHtmlOutput += '<div class="image-background col-2">';
                 buildTheHtmlOutput += '<img src="images/no-image.gif">';
+                buildTheHtmlOutput += '</div>';
             } else {
+                buildTheHtmlOutput += '<div class="image-background col-2">';
                 buildTheHtmlOutput += '<img src="' + value.volumeInfo.imageLinks.thumbnail + '">';
+                buildTheHtmlOutput += '</div>';
             }
 
-            buildTheHtmlOutput += '<div class="book-info">';
+            buildTheHtmlOutput += '<div class="book-info col-10">';
             buildTheHtmlOutput += '<p class="book-title">' + value.volumeInfo.title + '</p>';
             buildTheHtmlOutput += '<p class="author">' + value.volumeInfo.authors + '</p>';
             buildTheHtmlOutput += '<p class="book-blurb">' + value.volumeInfo.description + '</p>';
@@ -423,6 +427,7 @@ $("#author-search").on("submit", function (event) {
                 displayBooks(result);
                 searchInput = "";
                 $("#search-input").val("");
+                $("#search-results-placeholder").hide();
             })
             // if API call unsuccessful
             .fail(function (jqXHR, error, errorThrown) {
