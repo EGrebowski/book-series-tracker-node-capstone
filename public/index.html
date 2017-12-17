@@ -2,8 +2,10 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <title>Next Book: Find New Releases from Your Favorite Authors</title>
     <meta name="description" content="Organize your digital library and discover new releases by your favorite authors">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Faustina|Noto+Sans" rel="stylesheet">
     <link rel="stylesheet" href="float-grid.css" type="text/css">
@@ -41,7 +43,8 @@
                 <label for="confirm-password">Confirm Password</label><br>
                 <input type="text" name="confirm-password" id="confirm-password" />
                 <button id="signup-btn" type="submit" class="col-3">Sign Up</button><br/>
-                <p>Already have an account? </p><a id="to-login" href="#">Log In</a>
+                <p>Already have an account? </p>
+                <a id="to-login" href="#">Log In</a>
             </form>
         </div>
         <div class="login-box col-4">
@@ -51,8 +54,9 @@
                 <input type="text" name="username" id="login-username" />
                 <label for="password">Password</label><br>
                 <input type="text" name="password" id="login-password" />
-                <button id="login-btn" type="submit" class="col-3">Log In</button>
-                <p>Don't have an account? </p><a href="#" id="to-signup">Sign up</a>
+                <button id="login-btn" type="submit" class="col-3">Log In</button><br/>
+                <p id="new-user">Don't have an account? </p>
+                <a href="#" id="to-signup">Sign up</a>
             </form>
         </div>
         <div class="placeholder col-1">w</div>

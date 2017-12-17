@@ -214,9 +214,21 @@ header p {
 .header form p,
 .header form a {
     text-align: center;
-    padding-top: 10px;
-    display: inline-block;
+
+    /*    display: inline-block;*/
     font-size: .85rem;
+}
+
+.header form p {
+    margin-top: 10px;
+}
+
+#new-user {
+    margin-top: 30px;
+}
+
+.header form a {
+    display: block;
 }
 
 #confirm-password {
@@ -305,6 +317,7 @@ input {
 #search-results-placeholder {
     padding-top: 20%;
     padding-bottom: 20%;
+    font-size: 0;
 }
 
 h4 {
@@ -606,6 +619,7 @@ footer li {
 
 footer li a {
     color: #BBB78A;
+    text-decoration: none;
 }
 
 footer li a:hover {
