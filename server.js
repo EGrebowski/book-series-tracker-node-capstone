@@ -148,7 +148,7 @@ app.post('/users/create', function (req, res) {
 // external API call
 var getBooksFromGoogle = function (searchTerm) {
     var emitter = new events.EventEmitter();
-    unirest.get('https://www.googleapis.com/books/v1/volumes?q=' + searchTerm + '&maxResults=15&key=AIzaSyB4W3-wdcG_-eTcoNMuLalqYQtnkcCv-d0')
+    unirest.get('https://www.googleapis.com/books/v1/volumes?q=' + searchTerm + '&maxResults=30&key=AIzaSyB4W3-wdcG_-eTcoNMuLalqYQtnkcCv-d0')
         //after api call we get the response inside the "response" parameter
         .end(function (response) {
             //success scenario
