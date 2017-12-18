@@ -13,11 +13,10 @@ var seriesSchema = new mongoose.Schema({
     //        type: String,
     //        required: false
     //    },
-    //    bookUser: {
-    //        type: String,
-    //        required: false
-    //        required: false
-    //    },
+    bookUser: {
+        type: String,
+        required: false
+    },
     bookSeries: {
         type: String,
         required: false

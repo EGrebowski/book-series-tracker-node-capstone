@@ -242,9 +242,10 @@ app.post('/series/create', function (req, res) {
 });
 
 // GET: get series list
-app.get('/get-series', function (req, res) {
+app.get('/get-series/:username', function (req, res) {
+    console.log(req.params.username, "test");
     Series.find({
-
+            bookUser: req.params.username
         },
         function (err, item) {
             if (err) {

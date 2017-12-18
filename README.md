@@ -5,7 +5,11 @@ Organize your digital library and be alerted of new releases by your favorite au
 ## Screenshots
 Desktop:
 
-<!--![Desktop](https://raw.githubusercontent.com/Marjona6/job-get-node-capstone/master/public/img/jobget-screenshot-01.png)-->
+![Desktop](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/screen-shot-1.png)
+![Desktop](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/screen-shot-2.png)
+![Desktop](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/screen-shot-3.png)
+![Desktop](https://github.com/EGrebowski/book-series-tracker-node-capstone/blob/master/github-images/screen-shot-4.png)
+
 
 Mobile:
 

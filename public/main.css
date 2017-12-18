@@ -88,10 +88,6 @@ nav h3 {
     font-family: 'Cinzel Decorative', cursive;
     font-size: 1.5rem;
     font-weight: bold;
-}
-
-nav h3,
-div {
     display: inline-block;
 }
 
@@ -425,10 +421,11 @@ h4 {
     margin-top: 50px;
 }
 
+/*
 .results .book-entry {
     display: block;
     overflow-y: auto;
-}
+}*/
 
 .results .book-entry::-webkit-scrollbar {
     background-color: #0f0f0f;
@@ -533,6 +530,11 @@ form.add-to-favorites {
 
 .series-title {
     color: #7F5E7C;
+    cursor: pointer;
+}
+
+.series-title:hover {
+    color: #678055;
 }
 
 .my-profile .author,
@@ -575,6 +577,9 @@ form.add-to-favorites {
 
 #other-books {
     margin-top: 30px;
+    display: block;
+    width: 100%;
+    clear: both;
 }
 
 .delete-book {

@@ -101,4 +101,10 @@ body {
         float: right;
     }
 
+    .results .book-entry {
+        display: block;
+        overflow-y: auto;
+    }
+
+
 }

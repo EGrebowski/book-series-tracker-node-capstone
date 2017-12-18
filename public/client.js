@@ -110,7 +110,7 @@ function displayFavoritesContainer(books) {
                 buildTheHtmlOutput += '</div>';
             }
         });
-        populateSeriesDropdown();
+        populateSeriesDropdown(username);
         //use the HTML output to show it in the index.html
         $(".loose-books").html(buildTheHtmlOutput);
     }
@@ -159,9 +159,9 @@ function populateSeriesContainer(username) {
 
 function displayBooksBySeries(books) {
     var buildTheHtmlOutput = '';
-    console.log("displayBooksBySeries ran");
-    console.log(books);
-    console.log(books.bookSeries);
+//    console.log("displayBooksBySeries ran");
+//    console.log(books);
+//    console.log(books.bookSeries);
     let output = sortByKey(books, 'bookSeries');
     console.log(output);
     let currentSeries = "";
@@ -188,10 +188,11 @@ function displayBooksBySeries(books) {
     $('.books-by-series').html(buildTheHtmlOutput);
 }
 
-function populateSeriesDropdown() {
+function populateSeriesDropdown(username) {
+    console.log(username);
     $.ajax({
             type: "GET",
-            url: "/get-series/",
+            url: "/get-series/" + username,
             dataType: 'json',
             contentType: 'application/json'
         })
@@ -484,7 +485,7 @@ $("#create-series").on("submit", function (event) {
             .done(function (result) {
                 // display series in dropdown
                 console.log(result);
-                populateSeriesDropdown();
+                populateSeriesDropdown(bookUser);
                 // reset input
                 seriesName = "";
                 $("#series-input").val("");
