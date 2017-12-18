@@ -581,10 +581,9 @@ form.add-to-favorites {
     float: right;
     width: 30px;
     position: absolute;
-    border: 1px solid red;
     text-align: center;
-    right: 0;
-    top: 0;
+    right: 10px;
+    top: 2px;
 }
 
 .delete-series {
@@ -593,13 +592,14 @@ form.add-to-favorites {
     line-height: 20px;
     background-color: #2e2e2e;
     color: white;
+    border: none;
 }
 
 .delete-series i {
     width: 20px;
     height: 20px;
-
 }
+
 
 select {
     padding-top: 2px;
