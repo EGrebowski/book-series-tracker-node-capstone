@@ -2,7 +2,6 @@
 // logged in username global variable
 var username = "";
 var searchTerm = "";
-//var seriesList = "";
 
 function sortByKey(array, key) {
     return array.sort(function (a, b) {
@@ -118,12 +117,10 @@ function displayFavoritesContainer(books) {
 
 function assignUserToSeries(username) {
     var buildTheHtmlOutput = '';
-    //    buildTheHtmlOutput += '<form action="#" name="create-series" id="create-series">';
     buildTheHtmlOutput += '<label for="series-input">Create a Book Series</label><br>';
     buildTheHtmlOutput += '<input type="text" name="series-input" id="series-input" placeholder="series name">';
     buildTheHtmlOutput += '<input type="hidden" class="series-user" value="' + username + '">';
     buildTheHtmlOutput += '<button type="submit">Create</button>';
-    //    buildTheHtmlOutput += '</form>';
     $("#create-series").html(buildTheHtmlOutput);
 }
 
@@ -159,9 +156,6 @@ function populateSeriesContainer(username) {
 
 function displayBooksBySeries(books) {
     var buildTheHtmlOutput = '';
-//    console.log("displayBooksBySeries ran");
-//    console.log(books);
-//    console.log(books.bookSeries);
     let output = sortByKey(books, 'bookSeries');
     console.log(output);
     let currentSeries = "";

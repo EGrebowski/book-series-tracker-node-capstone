@@ -1,18 +1,6 @@
 var mongoose = require('mongoose');
 
 var seriesSchema = new mongoose.Schema({
-    //    bookTitle: {
-    //        type: String,
-    //        required: false
-    //    },
-    //    bookAuthor: {
-    //        type: String,
-    //        required: false
-    //    },
-    //    bookThumbnail: {
-    //        type: String,
-    //        required: false
-    //    },
     bookUser: {
         type: String,
         required: false

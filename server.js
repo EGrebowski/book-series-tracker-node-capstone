@@ -105,7 +105,6 @@ app.post('/login', function (req, res) {
 
 // POST: creating a new user
 // TODO: ensure a user cannot sign up with the same username as already exists in the system
-// step 4 (continuing from client.js): local API endpoint in server.js
 app.post('/users/create', function (req, res) {
     var username = req.body.username;
     username = username.trim();

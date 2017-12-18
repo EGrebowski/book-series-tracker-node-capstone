@@ -82,7 +82,7 @@ function generateSeries() {
 
 function tearDownDb() {
     console.warn('Deleting database');
-    //    return mongoose.connection.dropDatabase();
+        return mongoose.connection.dropDatabase();
 }
 
 describe('users', function () {
@@ -228,10 +228,6 @@ describe('books', function () {
                     return book.findById(updatedData.id);
                 })
                 .then(function (book) {
-                    //                    book.bookTitle.should.equal(updatedData.bookTitle);
-                    //                    book.bookAuthor.should.equal(updatedData.bookAuthor);
-                    //                    book.bookThumbnail.should.equal(updatedData.bookThumbnail);
-                    //                    book.bookUser.should.equal(updatedData.bookUser);
                     book.bookSeries.should.equal(updatedData.bookSeries);
 
                 });

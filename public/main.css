@@ -17,10 +17,6 @@
 }
 
 html {
-    /*
-    background: url(images/background-image-2.jpeg) no-repeat center center fixed;
-    height: 100%;
-*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -51,7 +47,6 @@ button {
 .my-profile,
 .new-releases-full {
     padding: 20px;
-    /*    margin-top: 20px;*/
 }
 
 .dashboard {
@@ -74,7 +69,6 @@ button {
 }
 
 nav {
-    /*    background-color: rgb(101, 145, 118);*/
     background-color: #3e273c;
     padding: 15px;
     position: fixed;
@@ -98,12 +92,9 @@ nav div {
 
 nav ul {
     list-style: none;
-    /*    display: inline-block;*/
-    /*    float: right;*/
 }
 
 nav li {
-    /*    float: right;*/
     display: inline-block;
 }
 
@@ -118,16 +109,10 @@ nav li a {
     border-right: 2px solid #BBB78A;
     font-weight: bold;
     display: inline-block;
-    /*
-    color: #678055;
-    background-color: #203A0F;
-    border: 3px solid #202020;
-*/
 }
 
 nav a:hover {
     color: #678055;
-    /*color: #203A0F;*/
 }
 
 nav a:last-of-type {
@@ -150,8 +135,6 @@ nav a:last-of-type {
 h1 {
     font-family: 'Cinzel Decorative', cursive;
     font-size: 4rem;
-    /*    font-weight: normal;*/
-    /*    color: cadetblue;*/
     color: #7F5E7C;
     text-shadow: 2px 2px #3E273C;
     margin-bottom: 10px;
@@ -160,27 +143,22 @@ h1 {
 h2 {
     font-size: 1.8rem;
     margin-bottom: 20px;
-    /*    text-shadow: 2px 2px black;*/
 }
 
 header p {
     margin-top: 10px;
     font-size: 1.2rem;
     font-weight: bold;
-    /*    text-shadow: 2px 2px black;*/
 }
 
 .title {
-    /*    background-color: rgba(245, 247, 246, 0.3);*/
     background-color: #BBB78A;
     padding: 20px;
 }
 
 .login-box,
 .signup-box {
-    /*    background-color: white;*/
     background-color: #BBB78A;
-    /*    float: right;*/
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 20px;
@@ -222,8 +200,6 @@ header p {
 .header form p,
 .header form a {
     text-align: center;
-
-    /*    display: inline-block;*/
     font-size: .85rem;
 }
 
@@ -252,14 +228,12 @@ header p {
 }
 
 .dashboard .search {
-    /*    background-color: rgba(247, 240, 222, 0.8);*/
     padding: 20px;
     margin-top: 20px;
     color: #BBB78A;
 }
 
 .dashboard form {
-    /*    background-color: #2e2e2e;*/
     padding-top: 15px;
     padding-bottom: 15px;
     border-radius: 2px;
@@ -301,7 +275,6 @@ header p {
 }
 
 .search-results form {
-    /*    background-color: #2e2e2e;*/
     padding-top: 15px;
     padding-bottom: 15px;
     border-radius: 2px;
@@ -316,9 +289,6 @@ input {
     padding-left: 5px;
     padding-top: 2px;
     padding-bottom: 2px;
-    /*    margin-top: 5px;*/
-    /*    margin-right: 3px;*/
-    /*    width: 40%;*/
 }
 
 .search button,
@@ -335,7 +305,6 @@ input {
 h4 {
     font-size: 1.25rem;
     padding-bottom: 10px;
-    /*    text-decoration: underline;*/
     color: #BBB78A;
 }
 
@@ -355,7 +324,6 @@ h4 {
     font-family: 'Faustina', serif;
     font-size: 1.1rem;
     font-weight: bold;
-    /*    margin-top: 4px;*/
     margin-bottom: 2px;
     color: #918D61;
     overflow: hidden;
@@ -363,19 +331,7 @@ h4 {
     white-space: nowrap;
 }
 
-/*
-.book-title:hover {
-    text-overflow: inherit;
-    overflow: visible;
-    white-space: normal;
-    max-width: 400%;
-    width: 400%;
-    z-index: 1;
-}
-*/
-
 .author {
-    /*    font-weight: bold;*/
     margin-bottom: 4px;
     color: #918D61;
     font-size: .9rem;
@@ -421,16 +377,9 @@ h4 {
     margin-top: 50px;
 }
 
-/*
-.results .book-entry {
-    display: block;
-    overflow-y: auto;
-}*/
-
 .results .book-entry::-webkit-scrollbar {
     background-color: #0f0f0f;
     width: 5px;
-    /*    width: 30px;*/
 }
 
 .results .book-entry::-webkit-scrollbar-thumb {
@@ -443,19 +392,10 @@ h4 {
     display: block;
 }
 
-/*
-.results .book-entry img {
-    vertical-align: text-top;
-    display: inline-block;
-    width: 15%;
-}
-*/
-
 .results .image-background {
     vertical-align: text-top;
     display: inline-block;
     background-color: #2e2e2e;
-    /*    width: 15%;*/
 }
 
 form.add-to-favorites {
@@ -466,11 +406,8 @@ form.add-to-favorites {
 .book-info {
     display: inline-block;
     vertical-align: text-top;
-    /*    padding-top: 2px;*/
     padding-left: 10px;
-    /*    width: 85%;*/
     float: right;
-    /*    max-height: 200px;*/
 }
 
 .book-info button {
@@ -559,11 +496,6 @@ form.add-to-favorites {
     width: 65%;
     padding-top: 2px;
     padding-bottom: 2px;
-    /*
-    -webkit-appearance: none;
-    -webkit-border-radius: 0px;
-    padding-left: 10px;
-*/
 }
 
 .series-finder button {
@@ -628,7 +560,6 @@ option {
     width: 128px;
     max-width: 100%;
     display: block;
-    /*    max-height: 163px;*/
 }
 
 .my-profile .book-entry img {
