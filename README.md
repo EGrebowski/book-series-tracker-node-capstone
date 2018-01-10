@@ -64,7 +64,7 @@ You can access a working prototype of the app at [https://book-tracker-node-caps
 ## Technical
 This app is built using HTML, CSS, JavaScript, jQuery, and Node.js.
 
-Usernames, encrypted passwords (encrypted using salted hashing with [bcrypt.js](https://www.npmjs.com/package/bcryptjs)), and job lead information are stored and accessed from an [mLab](https://mlab.com) database.
+Usernames and encrypted passwords (encrypted using salted hashing with [bcrypt.js](https://www.npmjs.com/package/bcryptjs)) are stored and accessed from an [mLab](https://mlab.com) database.
 
 Other technologies used include MongoDB, Mongoose, Passport, Express, Mocha, and Chai.
 
