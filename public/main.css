@@ -151,24 +151,34 @@ header p {
     font-weight: bold;
 }
 
-.title {
+.title-wrapper {
     background-color: #BBB78A;
     padding: 20px;
 }
 
 .login-box,
 .signup-box {
-    background-color: #BBB78A;
+    /*    background-color: #BBB78A;*/
     padding-top: 20px;
     padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 30px;
+    padding-right: 10px;
+    border-left: 1px solid #202020;
 }
 
 .login-box fieldset,
 .signup-box fieldset {
     font-weight: bold;
     color: #2C0B29;
+}
+
+.login-box fieldset {
+    margin-bottom: 10px;
+}
+
+.login-box form p,
+.signup-form p {
+    font-size: .8rem;
 }
 
 .login-box form label,
@@ -197,7 +207,7 @@ header p {
     margin-top: 20px;
 }
 
-.header form p,
+.header form .switch-form,
 .header form a {
     text-align: center;
     font-size: .85rem;
@@ -208,7 +218,7 @@ header p {
 }
 
 .header form p {
-    margin-top: 10px;
+    /*    margin-top: 10px;*/
 }
 
 #new-user {

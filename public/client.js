@@ -221,7 +221,7 @@ $(document).ready(function (event) {
     $(".search-results").hide();
     $(".my-profile").hide();
     $(".new-releases-full").hide();
-    $(".login-box").hide();
+    $(".signup-box").hide();
     $(".series-wrapper").hide();
 });
 
