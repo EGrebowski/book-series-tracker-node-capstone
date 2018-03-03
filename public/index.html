@@ -66,12 +66,26 @@
         <div class="placeholder col-1">w</div>
     </section>
 
+    <section class="my-profile col-12">
+        <div class="intro">
+            <p>Click on <span>Find Books</span> in the navigation to add books to your library.</p>
+            <p>To sort your library by series, type the series name below to create it. For each item in <span>Loose Books</span>, select the appropriate series from the dropdown menu.</p>
+        </div>
+        <h4>My Library</h4>
+        <form action="#" name="create-series" id="create-series" autocomplete="off"></form>
+        <h4>My Series</h4>
+        <p class="directions">Click on a series to display books assigned to it. Click again to close.</p>
+        <div class="books-by-series"></div>
+        <h4 id="other-books">Loose Books</h4>
+        <div class="loose-books-wrapper"></div>
+    </section>
 
     <section class="search-results col-12">
         <div class="search col-12">
             <div class="col-3 placeholder">h</div>
             <form action="#" name="author-search" id="author-search" class="col-6">
                 <label for="search-input">Find Books</label><br>
+                <p>Search for books to add to your library.</p>
                 <input type="text" name="search-input" id="search-input" placeholder="book title" class="col-9 author-search-input">
                 <button type=" submit " class="col-3 ">Search</button>
             </form>
@@ -82,21 +96,6 @@
         </div>
     </section>
 
-    <section class="my-profile col-12">
-        <h4>My Library</h4>
-        <form action="#" name="create-series" id="create-series" autocomplete="off">
-        </form>
-        <h4>My Series</h4>
-        <p class="directions">Click on a series to display books assigned to it. Click again to close.</p>
-        <div class="books-by-series">
-        </div>
-        <h4 id="other-books">Other Books</h4>
-        <div class="loose-books-wrapper col-12">
-            <div class="placeholder col-1">w</div>
-            <div class="loose-books col-11">
-            </div>
-        </div>
-    </section>
 
     <footer role="contentinfo">
         <ul>

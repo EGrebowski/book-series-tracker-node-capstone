@@ -111,7 +111,7 @@ function displayFavoritesContainer(books) {
         });
         populateSeriesDropdown(username);
         //use the HTML output to show it in the index.html
-        $(".loose-books").html(buildTheHtmlOutput);
+        $(".loose-books-wrapper").html(buildTheHtmlOutput);
     }
 }
 

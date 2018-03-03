@@ -168,6 +168,7 @@ header p {
 
 .login-box fieldset,
 .signup-box fieldset {
+    font-size: 1.2rem;
     font-weight: bold;
     color: #2C0B29;
 }
@@ -284,6 +285,11 @@ header p {
     color: rgba(214, 201, 194, 0);
 }
 
+.my-profile,
+.search {
+    max-width: 1080px;
+}
+
 .search-results form {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -293,6 +299,13 @@ header p {
 .search label {
     font-weight: bold;
     color: #BBB78A;
+}
+
+.search p {
+    color: #918D61;
+    font-size: .8rem;
+    margin-top: .3rem;
+    margin-bottom: .3rem;
 }
 
 input {
@@ -430,6 +443,20 @@ form.add-to-favorites {
     padding-top: 120px;
 }
 
+.my-profile .intro {
+    margin-bottom: 30px;
+}
+
+.my-profile .intro p {
+    color: #918D61;
+    font-size: .8rem;
+    font-weight: 900;
+}
+
+.my-profile .intro span {
+    color: #9f939e;
+}
+
 .my-profile form {
     margin-bottom: 40px;
 }
@@ -445,6 +472,11 @@ form.add-to-favorites {
     color: #918D61;
     font-size: .8rem;
     margin-bottom: 30px;
+}
+
+.my-profile .books-by-series {
+    margin-bottom: 30px;
+    overflow-y: auto;
 }
 
 .my-profile .series-wrapper {
