@@ -159,12 +159,20 @@ header p {
 
 .login-box,
 .signup-box {
-    /*    background-color: #BBB78A;*/
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 30px;
     padding-right: 10px;
     border-left: 1px solid #202020;
+}
+
+@media only screen and (max-width: 640px) {
+    .login-box,
+    .signup-box {
+        border-left: none;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
 }
 
 .login-box fieldset,
@@ -514,6 +522,7 @@ form.add-to-favorites {
 .series-title {
     color: #7F5E7C;
     cursor: pointer;
+    padding-bottom: .5rem;
 }
 
 .series-title:hover {
@@ -531,6 +540,19 @@ form.add-to-favorites {
 
 .my-profile .author {
     font-size: .8rem;
+}
+
+.loose-books-wrapper {
+    clear: both;
+    display: block;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.loose-books-wrapper:after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
 .loose-books .book-entry {
